@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stedsnavn</title>
+</head>
+<body>
+    
+    <div id="midtstilt">
+        <h1>Stadsnamn, med brukarinput</h1>
+        <p>
+            <!--Her er det feltene brukeren skriver i-->
+            <input id="Fornavn" type="text"  placeholder="Fornavn">
+            <input id="Etternavn" type="text"  placeholder="Etternavn">
+            <!-- Her er det en knapp-->
+            <button id="knappDifferanse" type="button">Differanse i antall bokstaver</button>
+        </p>
+        <!--Her vil man gjenta  navnet og antall bokstaver -->
+        <p id="navnetDitt"></p>
+
+        <!--Her vil differansen komme -->
+        <p id="differansen"></p>
+
+    </div> <!-- Avsluttar midtstilt -->
+
+    <script>
+
+        console.log("js funker:)");
+        //her definerer vi en variabel for en element (paragraf/skrift) i html der navnet ditt kommer
+        let output_navn = document.getElementById("navnetDitt");
+        //her definerer vi en variabel for en element (paragraf/skrift) i html der differansen kommer
+        let output_differanse = document.getElementById("differansen");
+       //Her definerer vi en annen variabel for selve knappen man trykker på. Dette skal vi bruke i js
+        let knappDifferanse = document.getElementById("knappDifferanse");
+
+        //lager en event, når vi klikker på knappen skal det skje en funksjon
+        knappDifferanse.addEventListener("click", funksjon);
+
+        
+        function funksjon(){
+            //først lager vi nye variabler der vi henter ut verdien av hva brukeren skrev
+            let Fornavn = document.getElementById("Fornavn").value;
+            let Etternavn = document.getElementById("Etternavn").value;
+
+            //Så skriver vi ut hva den skrev inn
+            output_navn.innerHTML += "Fornavnet ditt er " + Fornavn + " og etternavnet ditt er " + Etternavn + ". ";
+            
+            //her lager vi nye variabler for antall av bokstaver han har i navnet
+            let lengdeFornavn = Fornavn.length;
+            let lengdeEtternavn = Etternavn.length;
+
+
+            //her setter vi inn lengde på navnene, ved hjelp av variablene vi satt over
+            output_navn.innerHTML += "Fornavnet ditt har " + lengdeFornavn + " bokstaver, og Etternavnet ditt har " + lengdeEtternavn + " bokstaver.";
+
+            //Her regner vi differansen i antall bokstaver ved hjelp av Math.abs
+            let differanseAvBokstav = Math.abs(lengdeFornavn - lengdeEtternavn);
+
+            //her skrvier vi ut hva differansen blir
+            output_differanse.innerHTML = "Differansen av bokstavene i navnet ditt er " + differanseAvBokstav;
+        }
+               
+    </script>
+</body>
+</html>
