@@ -1,0 +1,20 @@
+img{
+    width: 40px;
+    height: 40px;
+}
+
+body { background-color: rgb(190, 190, 190); }
+
+#midtstilt { 
+    width: 600px; 
+    padding: 20px;
+     border: black 2px solid;
+      background-color: white; 
+      margin: auto;
+}
+
+button{
+    width: 20%;
+    height: 20px;
+    border-radius: 30px;
+}

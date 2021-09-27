@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  initial-scale=1.0">
+    <title>Bildegalleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   
+    
+    <div id="midtstilt">
+           
+        <button type="button" id="knapp"> Bytt bilde </button>
+        <img id="visning" src="" alt="">
+
+    </div>
+
+
+    
+      
+    <script>
+       
+      
+        //lager en array
+        const rekke = ["bilder/art.svg", "bilder/hamburger.svg", "bilder/calc.svg"];
+        //tester om det kommer inn
+        console.log(rekke);
+        //lager en variabel som viser hvor man bgynner med bildene
+        let bilde = 0;
+
+        //setter inn i den nye verdien
+        document.getElementById("visning").src = rekke[bilde];
+
+        //når vi trykker på knappen så skal en funskjon skje
+        document.getElementById("knapp").addEventListener("click", Bytte);
+
+        function Bytte(){
+
+            
+            if (bilde >= rekke.length - 1) { // Hvis vi kommer utenfor arrayens lengde
+                bilde = 0;
+            } 
+            else { // Hvis man er innenfor
+                bilde = bilde + 1;
+              
+            }
+
+            //sette funksjonen i gang
+            document.getElementById("visning").src = rekke[bilde];
+        }
+           
+       </script>
+    
+</body>
+</html>

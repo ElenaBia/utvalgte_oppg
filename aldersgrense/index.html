@@ -7,17 +7,47 @@
     <title>Alder</title>
     <link rel="stylesheet" href="style.css">
 
+
+
+    <style>
+        body { background-color: rgb(190, 190, 190); }
+        main { width: 600px; padding: 20px; border: black 2px solid; background-color: white; margin: auto;}
+    </style>
 </head>
 <body>
+    <!-- HTML -->
+    <main>
+        <label for="inputAlder">Din alder: </label>
+        <input type="text" id="inputAlder" placeholder="Skriv inn alder">
+        <button id="knapp">Kontroller alder</button>
+
+        <h1 id="utskrift">
+            <!-- Fylles ut i JS-koden under. -->
+        </h1>
+        <img id="bilde" src="" width="400px"> <!-- Tomt bilde, vises i utg.pkt. ikke. -->
+    </main>
     
-    <div id="midtstilt">
+    <!-- Kode -->
+    <script>
+        document.getElementById("knapp").addEventListener("click", sjekkAlder);
+        //document.getElementById("inputAlder").addEventListener("change", sjekkAlder);
 
-        <h1 id="velkommen">Velkommen </h1>
-
-        <p id="bilde">Bilde</p>
-
-        <img src="bilder/clock.svg" alt="klokke">
-    </div>
+        function sjekkAlder() {
+            // Henter tallet som er skrevet inn i tekstfeltet og lagrer i variabelen 'alder':
+            var alder = document.getElementById("inputAlder").value;
+            // Sjekker alderen og viser bildet dersom brukeren er gammel nok
+            if(alder >= 18) {
+                console.log("Du er gammel nok, her ta en donut");
+                document.getElementById("utskrift").innerHTML = "Du er gammel nok, ta en donut:)";
+                document.getElementById("bilde").src = "bilder/donut.svg";
+            }
+            else {
+                console.log("Du er for ung");
+                document.getElementById("utskrift").innerHTML = "Hvorfor er du her? legg deg.";
+                document.getElementById("bilde").src = "bilder/clock.svg";
+            }
+        }       
+    </script>
 
 </body>
 </html>
