@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terning</title>
+</head>
+<body>
+     
+    <div> <!-- Oppg 2. s.83 terning kast-->
+        <h1>Terningkast</h1>
+        <!-- Her lager vi en knapp-->
+        <button type="button" id="trilleKnapp" >Trykk her for å trille</button>
+        <!-- her kommer tallet man fikk-->
+        <p id="tallSomKommer"> Du fikk: </p><br><br>
+
+        <!---- Her kommer bilder av terningen-->
+        <p>Bildet av terningen:</p><br>
+        <img src="" alt="" id="terning" width="100px">
+
+    </div><br><br>
+
+    <script>
+         //vi sier når funksjonen Trill skal settes i gang
+       document.getElementById("trilleKnapp").addEventListener("click", Trill);
+
+// vi lager en array for bildene av hver terningside
+const terningside = ["1", "2", "3", "4", "5", "6"];
+
+
+function Trill(){
+    //her definerer vi variabelen tall, som skal gi et random tall fra 1-6
+     let tall = Math.floor(Math.random()*6)+1;
+
+     //hva skjer hvis tallet blir 6
+    if (tall == 6){
+        document.getElementById("tallSomKommer").innerHTML = "Gratulerer ! Tallet du fikk er 6! ";
+     }
+     //hva skjer hvis tallet blir 5
+    else if (tall == 5){
+        document.getElementById("tallSomKommer").innerHTML = " Du fikk 5! Ikke verst!"
+     }
+     //hva skjer hvis tallet blir alt annet
+    else{
+         document.getElementById("tallSomKommer").innerHTML = " Du fikk " + tall + ". Prøv en gang til."
+     }
+
+     //Her kombinere vi arrayen med variabelen tall, slik at den viser rett terningside.
+     // vi tar tall - 1 fordi js begynner å telle fra 0 -> dermed når tall = 1 viser det egt bilde2
+     document.getElementById("terning").src= "bilder/" + terningside[tall - 1] + ".png";
+ }
+    </script>
+</body>
+</html>

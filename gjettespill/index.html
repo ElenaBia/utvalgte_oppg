@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjette spill</title>
+</head>
+<body>
+    
+    <h1> Hei og velkommen til dette gjettespillet! Masse lykke til! </h1>
+
+    <p>Hvilket tall tenker jeg på?</p>
+    <input type="number" placeholder="skriv tallet" id="inputTall">
+    <button id="btn">Ferdig? Trykk her</button>
+
+
+    <script>
+        let rettTall = 5;
+        let gjetteTall = document.getElementById("inputTall");
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", sjekk);
+
+        function sjekk(){
+            if (Number(gjetteTall) == rettTall){
+                document.body.innerHTML = "GRATULERER! Du vant!";
+            }
+            else{
+                document.body.innerHTML = "Beklager, det var ikke riktig. Prøv på nytt";
+                
+            }
+        }
+    </script>
+
+</body>
+</html>
