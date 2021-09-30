@@ -10,26 +10,86 @@
     
     <h1> Hei og velkommen til dette gjettespillet! Masse lykke til! </h1>
 
-    <p>Hvilket tall tenker jeg på?</p>
+    <p>Hvilket tall tenker jeg på? Tips: et tall fra 1-10</p>
+    <!-- Her skriver brukeren inn tallet-->
     <input type="number" placeholder="skriv tallet" id="inputTall">
+    <!-- Her sendes inn tallet-->
     <button id="btn">Ferdig? Trykk her</button>
+    <!-- Her kommer antall forsøk som er igjen og tilbakemelding-->
+    <p id="forsøk"> Antall forsøk: </p>
+    <p id="melding"> La oss se på hvor mange forsøk klarer du å gjette rett :D</p>
+
+
+    <button id="påNytt" style="display: none;">Prøv på nytt</button>
 
 
     <script>
-        let rettTall = 5;
-        let gjetteTall = document.getElementById("inputTall");
-        let btn = document.getElementById("btn");
+        //definerer knappen som skal sende inn info
+        const btn = document.getElementById("btn");
+        //legger til en funksjon når vi trykker
         btn.addEventListener("click", sjekk);
 
+        //definerer en variabel for en ny knapp
+        const påNytt = document.getElementById("påNytt");
+        
+        //lager en funksjon når vi trykker på den
+        påNytt.addEventListener("click", refresh)
+
+        //bestemmer antall forsøk og clicks
+        let antallClick = 0;
+        let antallForsøk = 2;
+
+        //hva som skjer når vi trykker på knappen for å sende inn tallet
         function sjekk(){
-            if (Number(gjetteTall) == rettTall){
-                document.body.innerHTML = "GRATULERER! Du vant!";
+            //sier at hver gang vi trykker på knappen skal antall clicks øke
+            antallClick += 1;
+
+            //Definerer et rett svar
+            let rettTall = 5;
+            //Definerer gjettetallet -> det man skrive i html input-feltet
+            let gjetteTall = Number(document.getElementById("inputTall").value);
+
+            //Sier antall forsøk du har igjen
+            let forsøk = document.getElementById("forsøk");
+
+            //Gir en liten tilbakemelding
+            let melding =  document.getElementById("melding");
+
+            ///          HER MÅ DU SE DU FÅR FEIL; FÅR RFAM BARE TO FORSØK
+        
+            //hvis du klikket mer enn antall forsøk, kommer knappen om å refreshe opp og man får mld
+            if(antallClick > antallForsøk){
+                forsøk.innerHTML = "du har prøvd for mange ganger. 0 av 3 forsøk.";
+                påNytt.style.display= "block";
             }
-            else{
-                document.body.innerHTML = "Beklager, det var ikke riktig. Prøv på nytt";
-                
+            
+            //hva som skjer hvis man trykker 1 gang
+            else if (antallForsøk = antallForsøk-1){
+                forsøk.innerHTML = "du har 2 forsøk igjen.";
             }
+             //hva som skjer hvis man trykker 2 ganger
+            else if (antallClick = antallForsøk){
+                forsøk.innerHTML = "du har fortsatt et forsøk igjen.";
+            }
+           
+            
+
+
+            if (gjetteTall == rettTall){
+               melding.innerHTML = "Gratulerer du fikk det til på første forsøk!";
+          
+            }
+            else if(gjetteTall != rettTall){
+                melding.innerHTML ="Det var feil, prøv på nytt:)";
+            }
+
+
         }
+
+        function refresh(){
+            location.reload();
+        }
+
     </script>
 
 </body>
