@@ -17,7 +17,8 @@
     <button id="btn">Ferdig? Trykk her</button>
     <!-- Her kommer antall forsøk som er igjen og tilbakemelding-->
     <p id="forsøk"> Antall forsøk: </p>
-    <p id="melding"> La oss se på hvor mange forsøk klarer du å gjette rett :D</p>
+    <p id="melding"> La oss se på hvor mange forsøk klarer du å gjette rett :D</p><br>
+    <p id="hint">Her får du hint om det er for høyt/lavt</p>
 
 
     <button id="påNytt" style="display: none;">Prøv på nytt</button>
@@ -37,15 +38,22 @@
 
         //bestemmer antall forsøk og clicks
         let antallClick = 0;
-        let antallForsøk = 2;
+        let antallForsøk = 3;
+
+        //Definerer et tilfeldig rett svar
+        let rettTall = Math.floor(Math.random()*10)+1
+        
+        //console.log(rettTall);
 
         //hva som skjer når vi trykker på knappen for å sende inn tallet
         function sjekk(){
             //sier at hver gang vi trykker på knappen skal antall clicks øke
             antallClick += 1;
 
-            //Definerer et rett svar
-            let rettTall = 5;
+            let hint = document.getElementById("hint");
+            hint.style.border = "solid";
+
+            
             //Definerer gjettetallet -> det man skrive i html input-feltet
             let gjetteTall = Number(document.getElementById("inputTall").value);
 
@@ -58,34 +66,45 @@
             ///          HER MÅ DU SE DU FÅR FEIL; FÅR RFAM BARE TO FORSØK
         
             //hvis du klikket mer enn antall forsøk, kommer knappen om å refreshe opp og man får mld
-            if(antallClick > antallForsøk){
+            if(antallClick > 2){
                 forsøk.innerHTML = "du har prøvd for mange ganger. 0 av 3 forsøk.";
                 påNytt.style.display= "block";
             }
             
             //hva som skjer hvis man trykker 1 gang
-            else if (antallForsøk = antallForsøk-1){
+            else if (antallClick < 2){
                 forsøk.innerHTML = "du har 2 forsøk igjen.";
             }
              //hva som skjer hvis man trykker 2 ganger
-            else if (antallClick = antallForsøk){
+            else{
                 forsøk.innerHTML = "du har fortsatt et forsøk igjen.";
             }
            
-            
+            //gi tilbakemelding om det er for høyt/lavt
+            if (gjetteTall>rettTall){
+                hint.innerHTML = "Tallet du gjettet er for høyt. Prøv et lavere tall";
+            }
+            else{
+                hint.innerHTML = "Tallet du gjettet er for lavt. Prøv et høyere tall";
+            }
 
 
+
+            //hva som skjer om man gjetter feil/rett
             if (gjetteTall == rettTall){
                melding.innerHTML = "Gratulerer du fikk det til på første forsøk!";
+               forsøk.style.display = "none";
+               påNytt.style.display = "block";
+               hint.style.display = "none";
           
             }
-            else if(gjetteTall != rettTall){
+            else {
                 melding.innerHTML ="Det var feil, prøv på nytt:)";
             }
 
 
         }
-
+        //ettersom man ikke har flere forsøk, dukker knappen opp. Funksjonen refresher siden
         function refresh(){
             location.reload();
         }
