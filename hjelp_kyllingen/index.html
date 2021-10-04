@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hjelp kyllingen</title>
+</head>
+<body>
+    <section>
+        <h1>Hjelp en stakkers kylling!</h1><br><br>
+        <p>For å hjelpe den lille kyllingen må du trykket på egget slik at den klekker.</p> <br><br>
+    </section>
+    <!-- Her kommer figuren som skal klikkes-->
+    <section>
+        <figure> 
+            <!--- Under ligger selve bildet av figuren som vi kommer til å manipulere senere-->
+            <img id="bilde" src="bilder/Egg1.jpg" alt="fase 1">
+            <!--- og et undertekst som vi kommer også til å manipulere-->
+            <figcaption id="figurTekst">Vi må hjelper kyllingen!</figcaption>
+        </figure>
+    </section>
+
+
+    <script>
+        //definerer variabler for å gjøre det enklere til å manipulere html.
+        let bilde = document.getElementById("bilde");
+        let undertekst = document.getElementById("figurTekst");
+
+        //lager en funksjon som skal skje når man trykker på figuren
+        bilde.addEventListener("click", bytteBilde);
+
+        //starter med et 0 antall klikk, når funksjonen starter, kommer den til å øke med 1
+        antallKlikk = 0;
+     
+        
+
+        function bytteBilde(){
+           antallKlikk += 1;
+            
+           //skriver hva som skal skje da antall klikk når ulike tall
+           if(antallKlikk == 1){
+               bilde.src = "bilder/Egg2.jpg";
+               undertekst.innerHTML ="Oi, nå skjer det noe!";
+            }
+           else if(antallKlikk == 2){
+             bilde.src = "bilder/Egg3.jpg";
+               undertekst.innerHTML ="Woah! Håper at du har kontroll!";
+               
+            }
+           else if(antallKlikk == 3){
+             bilde.src = "bilder/Egg4.jpg";
+               undertekst.innerHTML ="NÅ NÆRMER DET SEG!";
+            }
+           else if(antallKlikk == 4){
+             bilde.src = "bilder/Egg5.jpg";
+               undertekst.innerHTML ="GRATULERER! Du har hjelpet en uskyldig kylling til å kommme ut!";
+            }
+           
+
+            
+        }
+
+    
+
+
+    </script>
+</body>
+</html>
