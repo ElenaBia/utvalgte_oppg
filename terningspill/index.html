@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terning og kalkis</title>
+    <link rel="stylesheet" href="bilder/style.css">
+
+</head>
+<body>
+
+    <h1>Terningkast</h1>
+    <!-- Her lager vi en knapp-->
+    <button type="button" id="trilleKnapp" >Trykk her for å trille</button>
+
+    <div id="flex"> 
+            <div id="boks1">
+                <!--- lager første terningkast-->
+                <section>
+                    <!-- her kommer tallet man fikk-->
+                    <p id="tallSomKommer1"> Du fikk: </p><br><br>
+
+                    <!---- Her kommer bilder av terningen-->
+                    <p>Bildet av terningen:</p><br>
+                    <img src="" alt="" id="terning1" width="100px">
+                </section>
+            </div> 
+
+            <div id="boks2">
+                <!--- lager andre terningkast-->
+                <section>
+                    <!-- her kommer tallet man fikk-->
+                    <p id="tallSomKommer2"> Du fikk: </p><br><br>
+
+                    <!---- Her kommer bilder av terningen-->
+                    <p>Bildet av terningen:</p><br>
+                    <img src="" alt="" id="terning2" width="100px">
+                </section>
+            </div> 
+
+            <div id="boks3">
+                <!--- lager tredje terningkast-->
+                <section>
+                    <!-- her kommer tallet man fikk-->
+                    <p id="tallSomKommer3"> Du fikk: </p><br><br>
+
+                    <!---- Her kommer bilder av terningen-->
+                    <p>Bildet av terningen:</p><br>
+                    <img src="" alt="" id="terning3" width="100px">
+                </section>
+            </div> 
+        
+    </div>
+    
+
+    
+
+    <script>
+
+        //vi sier når funksjonen Trill skal settes i gang
+       document.getElementById("trilleKnapp").addEventListener("click", Trill);
+
+       // vi lager en array for bildene av hver terningside
+       const terningside = ["1", "2", "3", "4", "5", "6"];
+
+
+       function Trill(){
+           //her definerer vi variabelen tall, som skal gi et random tall fra 1-6
+            let tilfeldigTall1 = Math.floor(Math.random()*6)+1;
+
+            let tilfeldigTall2 = Math.floor(Math.random()*6)+1;
+
+            let tilfeldigTall3 = Math.floor(Math.random()*6)+1;
+
+           
+            document.getElementById("tallSomKommer1").innerHTML = "Gratulerer ! Tallet du fikk er " + tilfeldigTall1;
+        
+
+            //Her kombinere vi arrayen med variabelen tall, slik at den viser rett terningside.
+            // vi tar tall - 1 fordi js begynner å telle fra 0 -> dermed når tall = 1 viser det egt bilde2
+            document.getElementById("terning1").src= "bilder/" + terningside[tilfeldigTall1 - 1] + ".png";
+
+
+            ///          Andre terning
+            document.getElementById("tallSomKommer2").innerHTML = "Gratulerer ! Tallet du fikk er " + tilfeldigTall2;
+
+                //bruker igjen array til å få fram et bilde
+            document.getElementById("terning2").src= "bilder/" + terningside[tilfeldigTall2 - 1] + ".png";
+
+            ///          Tredje terning
+            document.getElementById("tallSomKommer3").innerHTML = 
+
+            //bruker igjen array til å få fram et bilde
+            document.getElementById("terning3").src= "bilder/" + terningside[tilfeldigTall3 - 1] + ".png";
+
+
+        }
+
+        let boks1 = document.getElementById("boks1");
+        let boks2 = document.getElementById("boks2");
+        let boks3 = document.getElementById("boks3");
+
+
+    </script>
+
+
+</body>
+</html>
