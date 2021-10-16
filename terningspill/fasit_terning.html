@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terning</title>
+    <link rel="stylesheet" href="bilder/style.css">
+
+</head>
+<body>
+
+    <h1>Terningkast</h1><br>
+    <h3>Her kan du prøve på å få tre like svar. Du kan også trykke terningene for å holde dem igjen</h3>
+    <br>
+    <!-- Her lager vi en knapp-->
+    <button id="kastTerningar">Rull terningar!</button>
+
+    
+    <div id="terningar">
+        <img src="bilder/1.png" width="150" id="bilde1">
+        <img src="bilder/2.png" width="150" id="bilde2">
+        <img src="bilder/3.png" width="150" id="bilde3">
+    </div>
+    <p id="resultatUt"></p><br>
+
+
+    <button id="SpillIgjen" style="display: none;">Spill på nytt</button>
+
+
+    
+
+    <script>
+
+        let resultatUt = document.getElementById("resultatUt");
+        var bilde1 = document.getElementById("bilde1"); // bilde-elementet i HTML-koden
+        var bilde2 = document.getElementById("bilde2");
+        var bilde3 = document.getElementById("bilde3");
+        const terningarBoks = document.getElementById("terningar"); // DIV-boks som inneheld alle terningane
+        const kastTerningar = document.getElementById("kastTerningar"); // Knappen som lar deg kaste
+        const SpillIgjen = document.getElementById("SpillIgjen");
+       
+        // Verdiar for dei ulike terningane, mellom. 1-6
+        var tern1 = 1; var tern2 = 2; var tern3 = 3;
+
+        //Variabler som skal hjelpe oss med funksjonen som holder terningene i ro
+        let tern1Fri = true;
+        let tern2Fri = true;
+        let tern3Fri = true;
+
+        //     Summen
+        let antKast = 0; // Held styr på kor mange forsøk du har hatt på å kaste
+        let sum = 0; // Summen av terningane som blir trilla
+
+        //når vi trykker på de så skal den stå i ro
+        bilde1.addEventListener("click", hold1);
+        bilde2.addEventListener("click", hold2);
+        bilde3.addEventListener("click", hold3);
+
+
+        //vi sier når funksjonen Trill skal settes i gang
+       kastTerningar.addEventListener("click", Trill);
+
+       SpillIgjen.addEventListener("click", refresh);
+
+    
+
+        //  Funksjonen som gjør at terningene triller      
+       function Trill(){  
+            if(tern1Fri ===true){
+                //merk at under får tern1 en ny verdi.
+                tern1 = tallGenerator();
+                bilde1.src = "bilder/"+tern1+".png";
+                bilde1.width = 150;
+            }
+            //hvis terningen er holdt så blir funksjonen som holder terningen aktivert
+            else {
+                hold1();  
+            }
+
+            //andre terning
+            if(tern2Fri===true){
+                tern2 = tallGenerator();
+                bilde2.src = "bilder/"+tern2+".png";
+                bilde2.width = 150;
+            }
+            else {
+                console.log("Terning 2 blir holdt, den står!");
+                hold2();
+            }
+
+            ///          Tredje terning
+            if(tern3Fri==true){ 
+                tern3 = tallGenerator();
+                bilde3.src = "bilder/"+tern3+".png";
+                bilde3.width = 150;
+            }
+            else {
+                console.log("Terning 3 blir holdt, den står!");
+                hold3();
+            }
+
+            // Viser til slutt resultatet
+            visResultat();
+        }
+
+        function visResultat() {
+            resultatUt.innerHTML = "Resultat: " + tern1 + ", " + tern2 + " og " + tern3 + ".<br><br>";
+            
+            // Sjekkar om dei tre terningane er like.
+            if(tern1 === tern2 && tern2 === tern3){ 
+                resultatUt.innerHTML += "Du fikk tre like!<br>";
+                document.getElementById("kastTerningar").style.visibility = "hidden"; // Gøymer knappen som lar deg trille på nytt; du har fullført spelet
+                SpillIgjen.style.display = "block"; // Viser knappen som lar deg starte på nytt
+            }
+
+            // Ser på om tala overstiger ein viss verdi.
+            sum = tern1 + tern2 + tern3;
+            if(sum >= 15){ 
+                resultatUt.innerHTML += "Summen av terningane er femten eller meir.<br>";
+            }
+
+            // Legg til fleire sjekkar/kontrollar etter behov.
+        }
+    
+ 
+        //Her genereres selve terningskastene, et tilfeldig tall mellom 1 og 6
+       function tallGenerator(){
+            var tmp = Math.floor(Math.random()*6+1);
+            return tmp;
+        }
+
+
+        //når vi trykker på boksene, vil  definerte hendelser iverksettes
+        function hold1(){
+            bilde1.style.border = "1px solid red"; // Legg til ei raud ramme rundt terningen for å vise at ein held den
+            tern1Fri = false;
+          
+        }     
+
+        function hold2(){
+
+            bilde2.style.border = "1px solid red"; // Legg til ei raud ramme rundt terningen for å vise at ein held den
+            tern2Fri = false;
+        }   
+
+        function hold3(){
+
+            bilde3.style.border = "1px solid red"; // Legg til ei raud ramme rundt terningen for å vise at ein held den
+            tern3Fri = false;
+        }
+
+      
+
+        //her refresher siden og da tilbakestilles alt 
+        function refresh(){
+            location.reload();
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
