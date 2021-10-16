@@ -1,26 +1,35 @@
 #boks1{
    width: 250px;
-   border: solid 3px;
+   /*border: solid 3px;
    border-color: aqua;
-
+*/
 }
 
 #boks2{
    width: 250px;
-   border: solid 3px;
-   border-color: red;
+  
 }
 #boks3{
    width: 250px;
-   border: solid 3px;
-   border-color: green;
+ 
 }
 
 #flex{
    display: flex;
    justify-content: space-evenly;
-   background-color: hotpink;
+   background-color: rgb(204, 201, 201);
    padding: 30px;
    align-items: center;
    flex-direction: row;
+}
+
+h3{
+   color: rgb(116, 90, 231);
+}
+article{
+   display: flex;
+   justify-content: center;
+   border-bottom: double black;
+   width: 15em;
+   margin: 0 auto;
 }
