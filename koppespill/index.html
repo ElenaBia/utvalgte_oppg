@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+    <title>Koppspill</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kopp-spill</title>
 </head>
 <body>
-    
-    <h1>Gjett hvor mynte ligger.</h1><br>
+    <!-- HTML -->
+ ´
+        <h1>Gjettespel</h1>
+        <p id="p_åpningsbeskjed">
+            <!-- Instruksar som blir ståande heile tida -->
+        </p>
+        <div id="koppar">
+            <img src="bilder/kopp.png" width="100" id="kopp1" data-kopp="kopp1">
+            <img src="bilder/kopp.png" width="100" id="kopp2" data-kopp="kopp2">
+            <img src="bilder/kopp.png" width="100" id="kopp3" data-kopp="kopp3">
+        </div>
+        <p id="p_resultatUt">
+            <!-- Her kjem resultatet i form av tekst -->
+        </p>
+        <button id="btnSpillIgjen" class="button">Start spel på nytt</button>
+        <span id="utAntForsok"></span>
+        <div id="utEndelegResultat"></div>
 
-    <div >
-        <img src="bilder/kopp.png" alt="kopp" id="bilde1">
-        <img src="bilder/kopp.png" alt="kopp" id="bilde2">
-        <img src="bilder/kopp.png" alt="kopp" id="bilde3">
-    </div><br>
 
-
-    <div id="resultat"></div><br>
-    <div id="forsøk"></div><br>
-    
-
-
-    <script src="kopp.js"></script>
+    <!-- Koden -->
+    <script src="gjettespel.js"></script>
 </body>
+
 </html>
