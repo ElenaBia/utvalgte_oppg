@@ -65,9 +65,10 @@ function f_plasserMynt() {
 	return tilfeldig;
 }
 
-// Funksjon som set gjettinga til brukaren til variabelen forslag, og deretter kallar på funksjonen som sjekkar resultatet.
+// Funksjon som setter gjettingen til brukaren til variabelen forslag, og deretter kallar på funksjonen som sjekkar resultatet.
 function f_gjettKopp(evt) {
 	var knapp = evt.target;
+	console.log(evt.target);
 	var koppValgt = knapp.getAttribute("data-kopp"); // returnerer kopp1, kopp2 eller kopp3, sjå HTML linje 13-15
 	console.log("Du valgte: " + koppValgt);
 
