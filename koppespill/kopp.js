@@ -2,10 +2,11 @@
 let kopp1 = document.getElementById("bilde1");
 let kopp2 = document.getElementById("bilde2");
 let kopp3 = document.getElementById("bilde3");
-//let bland = document.getElementById("bland");
-//let p_resultat = document.getElementById("p_resultat");
-//let endeligResultat = document.getElementById("endeligResultat");
- 
+let bland = document.getElementById("bland");
+
+let resultat = document.getElementById("resultat");
+let forsøk = document.getAnimations("forsøk");
+
 
 //Variabler for hvor mynten er
 let NyPlass = plasserMynt(); //legger mynten bak en tilfeldig kopp
@@ -47,6 +48,12 @@ function gjett(evt){
 	}
 	
 	NyPlass = plasserMynt(); // Legg premien bak ein ny tilfeldig kopp
+}
+
+function resultat{
+
+	// Gjer at tilbakemeldinga om resultat forsvinn igjen etter nokre sekund, både mynten under koppen og teksten under.
+	setTimeout(f_tilbakeTilKoppOgOriginalTekst, 2000);
 }
 
 function f_tilbakeTilKoppOgOriginalTekst() {
