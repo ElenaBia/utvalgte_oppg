@@ -1,49 +1,62 @@
-// Hentar ut elementa me treng å kunne referere til.
-var p_resultatUt = document.getElementById("p_resultatUt");
-var btn_startSpel = document.getElementById("btn_startSpel");
+// lager variabler fra html elementene vi skal manipulere
+
+//knapp for å starte på nytt
+var SpillIgjen = document.getElementById("SpillIgjen");
+var p_åpningsbeskjed = document.getElementById("p_åpningsbeskjed");
+
+//koppene som vi bruker
 var kopp1 = document.getElementById("kopp1");
 var kopp2 = document.getElementById("kopp2");
 var kopp3 = document.getElementById("kopp3");
-var utAntForsok = document.getElementById("utAntForsok");
-var utEndelegResultat = document.getElementById("utEndelegResultat");
-var p_opningsbeskjed = document.getElementById("p_opningsbeskjed");
 
-// Brukes for å lagre bak kva kopp "premien" ligg, kva forslag brukaren gjer og om det var nært.
-var liggBak = 0;
-var forslag = 0;
-var ohsoclose = 0; // Har brukaren vore nære på å gjette riktig? Sjå resultatfunksjonen for bruk
-var tabResultat = []; // For å lagre resultata av gjettingane. Settes til verdien 1 der ein har rett.
-var antForsok = 0; var totaltAntForsok = 5; // For å begrense antall gjettingar ein har tilgjengeleg
+//Antall forsøk brukeren har
+var AntForsok = document.getElementById("AntForsok");
 
-// Lyttefunksjonar til knappar og bileta (koppane)
-btn_startSpel.addEventListener("click", f_oppstart);
+// Sier om du valgte rett/feil
+var p_resultatUt = document.getElementById("p_resultatUt");
+//Viser din score på slutten
+var EndeligResultat = document.getElementById("EndeligResultat");
+
+
+//definerer noen startsverdier
+antForsok = 0;
+totaltAntForsok = 5;
+forslag = 0;
+SpillIgjen.style.visibility = "hidden";
+kopp1.src = "bilder/kopp.png";
+kopp2.src = "bilder/kopp.png";
+kopp3.src = "bilder/kopp.png";
+
+//fargen på tilbakemeldingen skifter etterhvert farge
+p_resultatUt.style.backgroundColor = "whitesmoke";
+p_resultatUt.style.color = "black";
+
+//Den holder tellingen på antall rett/gal
+tabResultat = [];
+
+//funksjon som plasserer mynten et tilfeldig sted
+liggBak = f_plasserMynt(); // Legg premien bak ein ny tilfeldig kopp
+
+
+
+// Funksjonene som aktiveres når man klikker på bildene og knappen
+SpillIgjen.addEventListener("click", f_spillIgjen);
 kopp1.addEventListener("click", f_gjettKopp);
 kopp2.addEventListener("click", f_gjettKopp);
 kopp3.addEventListener("click", f_gjettKopp);
 
-// Startar spelet
-f_oppstart();
-
-// Køyrer ved oppstart og dersom ein vil starte spelet på nytt
-function f_oppstart(){
-    liggBak = f_plasserMynt(); // Legg premien bak ein ny tilfeldig kopp
-	forslag = 0;
-    ohsoclose = 0;
-	p_resultatUt.innerHTML = "Trykk på den koppen der du trur mynten ligg!";
-	utEndelegResultat.innerHTML = "";
-	btn_startSpel.style.visibility = "hidden";
-	kopp1.src = "bilder/kopp.png";
-	kopp2.src = "bilder/kopp.png";
-	kopp3.src = "bilder/kopp.png";
-	p_resultatUt.style.backgroundColor = "whitesmoke";
-	p_resultatUt.style.color = "black";
-	tabResultat = [];
-	antForsok = 0;
-	totaltAntForsok = 5;
-	utAntForsok.innerHTML = (totaltAntForsok-antForsok) + " forsøk igjen.";
-	utEndelegResultat.innerHTML = "";
-	p_opningsbeskjed.innerHTML = "Bak kva kopp trur du det ligg ein mynt? Du har " + totaltAntForsok + " forsøk på å gjette deg fram til dette. Har du flaks?";
+//restarter spillet
+function f_spillIgjen(){
+	location.reload();
 }
+
+
+
+
+//
+AntForsok.innerHTML = (totaltAntForsok-antForsok) + " forsøk igjen.";
+p_åpningsbeskjed.innerHTML = "Bak kva kopp trur du det ligg ein mynt? Du har " + totaltAntForsok + " forsøk på å gjette deg fram til dette. Har du flaks?";
+
 
 // Genererer ein plassering for mynten, som indikerer om det ligg bak kopp 1, 2 eller 3
 function f_plasserMynt() {
@@ -107,8 +120,8 @@ function f_resultat() {
 			tabResultat[antForsok] = 0;
 		}
 		antForsok++;
-		utAntForsok.innerHTML = "Forsøk " + antForsok + ". " + (totaltAntForsok-antForsok) + " forsøk igjen.";
-		f_ohSoClose(liggBak,forslag); // Gjer tilbakemelding om kor nært ein er riktig svar.
+		AntForsok.innerHTML = "Forsøk " + antForsok + ". " + (totaltAntForsok-antForsok) + " forsøk igjen.";
+		
 
 		// Gjer at tilbakemeldinga om resultat forsvinn igjen etter nokre sekund, både mynten under koppen og teksten under.
 		setTimeout(f_tilbakeTilKoppOgOriginalTekst, 2000);
@@ -134,33 +147,11 @@ function f_tilbakeTilKoppOgOriginalTekst() {
 		p_resultatUt.style.backgroundColor = "yellow";
 		p_resultatUt.style.color = "black";
 		p_resultatUt.innerHTML = "Du har ikkje fleire forsøk igjen! Start spelet på nytt.";
-		btn_startSpel.style.visibility = "visible";
-		utEndelegResultat.innerHTML = "Spelet er ferdig.<br> Din totale poengsum er " + f_summerResultat() + " av " + totaltAntForsok + " moglege.";
+		SpillIgjen.style.visibility = "visible";
+		EndeligResultat.innerHTML = "Spelet er ferdig.<br> Din totale poengsum er " + f_summerResultat() + " av " + totaltAntForsok + " moglege.";
 	}
 }
 
-// Ein tilbakemelding om ein var nært riktig resultat eller ikkje.
-function f_ohSoClose(a,b) {
-	var plassering = a;
-	var gjett = b;
-	var naerleik = plassering - gjett;
-	switch(naerleik) {
-		case 0: 
-            console.log("Gjetta riktig: " + naerleik); 
-			p_resultatUt.innerHTML += ".. Heilt rett.";
-			break;
-		case 1: 
-        case -1:
-            console.log("Oh, so close: " + naerleik); 
-            p_resultatUt.innerHTML += ".. Du var nære.";
-			break;
-		case 2:
-        case -2:
-            console.log("Elendig gjetta: " + naerleik);
-            p_resultatUt.innerHTML += ".. Langt frå rett!";
-			break;
-	}
-}
 
 // Summerer opp poengsummen som befinn seg i tabellen
 function f_summerResultat() {
