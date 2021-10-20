@@ -104,24 +104,36 @@ btn_hex.addEventListener("click",f_hex);
 
 
 
+
 function f_hex(){
 
-
-    let HexFarge = "#"+ Math.floor(Math.random()*16777215).toString(16);//https://css-tricks.com/snippets/javascript/random-hex-color/
+  //let HexFarge = "#"+ Math.floor(Math.random()*16777215).toString(16);//https://css-tricks.com/snippets/javascript/random-hex-color/
  
-    
+  let arrHex = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
+  let HexFarge = "";
 
+    
+ 
+  for(let hex_kode = 0; hex_kode < 6; hex_kode++) {
+    HexFarge += arrHex[getRandomIntInclusive(0,arrHex.length-1)];
+    return "#" + HexFarge; 
+  }
    
 
-    console.log(HexFarge);
+  console.log(HexFarge);
 
 
-    document.body.style.background = HexFarge;
+  document.body.style.background = HexFarge;
 
-    //her viser jeg bare hvilke farge man fikk i form av tekst på nettsiden
-    farge_kode.style.display ="block";
-    // farge_kode.style.color=HexFarge;
-    farge_kode.textContent = "Hex-kode: "+HexFarge;
+  //her viser jeg bare hvilke farge man fikk i form av tekst på nettsiden
+  farge_kode.style.display ="block";
+  // farge_kode.style.color=HexFarge;
+  farge_kode.textContent = "Hex-kode: "+HexFarge;
+}
 
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
 }
