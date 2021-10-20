@@ -8,35 +8,83 @@
     <title>Document</title>
 </head>
 <body>
+    <!---------
     
+    
+        ALT  LIGGER I KONSOLEN. Svar på hvordan du lager array med mange
+        "plasser", og at de plassene er tilfeldige tall. Så to ganger tilfeldige
+        tall inn i en array.
+    
+    ----------->
 
 
     <script>
         
+      //lager først en tom array
+        let array=[];
+
+        //variabel som skal vise antall ganger det er lik 10
+        let AntallTi = 0;
+     //variabel som skal vise antall ganger det er over 10
+        let OverTi = 0;
+     
+        //så lager vi en variabel som skal tilsvare det funksjonen returnerer
+        let a = f_array();
+        //og her skal vi skrive ut i konsolen hva som blir returnert
+        console.log(a);
+   
+
+        //her begynner selve funksjonen. 
+        function f_array(){
+        
+            /*startsverdien for summen
+            ----OBS----
+            den skal tydligvis bli definert inni funksjonen, IKKE utenfor*/
+            let sum = 0;
+
+            //sier at så lenge i er mellom 0 og 100 så skal den øke med 1.
+           for(let i=0;i<101;i++){
+
+                /*det som skjer er at for hver gang i++ så blir et nytt 
+                tilfeldig tall pushet inn i den tomme arrayen
+                        -------OBS-------
+                IKKE SETT funksjonen som et VARIABEL fordi da printer du samme tall*/
+
+                //her legger vi i slutten av arrayen et tilfeldig tall, (gjentas til i=100)
+                array.push(getRandomIntInclusive(1,20));
+
+              //summen = summ + de ulike tallene i arrayen
+                sum += array[i];                
+
+                //hver gang tallet er lik 10 så øker variabelen med 1
+                if(getRandomIntInclusive(1,20)===10){
+                    AntallTi++;
+                }
+                //hver gang tallet er større 10 så øker variabelen med 1
+                else if(getRandomIntInclusive(1,20)>10){
+                    OverTi++;
+                }
+    
+            }
+           //her skriver vi summen av alle gangene det var for mye / lik 10, og summen av alle tallene
+            console.log("antall like 10: "+AntallTi);
+            console.log("antall over 10: "+OverTi);
+
+            console.log("summen er " + sum);
+
+            //her returnerer vi hva arrayen blir etter i blir 100.
+            return array;
+
+        }
+
+
+        //< generere et tilfeldig tall ml. 1-20.
         function getRandomIntInclusive(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
         }
 
-        tilfeldigTall= getRandomIntInclusive();
-
-       // let tilfeldigTall = getRandomIntInclusive(1,20);
-         array =[];
-
-        for(let i=0;i<101;i++){
-            let HundreSiff = getRandomIntInclusive(0,100);
-            
-
-        }
-
-
-        
-            
-    
-        console.log(array);
-
-     
 
     </script>
 
