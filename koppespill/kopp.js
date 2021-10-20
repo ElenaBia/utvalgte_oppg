@@ -4,6 +4,7 @@
 var SpillIgjen = document.getElementById("SpillIgjen");
 var p_åpningsbeskjed = document.getElementById("p_åpningsbeskjed");
 
+
 //koppene som vi bruker
 var kopp1 = document.getElementById("kopp1");
 var kopp2 = document.getElementById("kopp2");
@@ -11,6 +12,8 @@ var kopp3 = document.getElementById("kopp3");
 
 //Antall forsøk brukeren har
 var AntForsok = document.getElementById("AntForsok");
+
+
 
 // Sier om du valgte rett/feil
 var p_resultatUt = document.getElementById("p_resultatUt");
@@ -21,13 +24,18 @@ var EndeligResultat = document.getElementById("EndeligResultat");
 //definerer noen startsverdier
 antForsok = 0;
 totaltAntForsok = 5;
-forslag = 0;
+let forslag = 0; //dette skal hjelpe med å finne hvor mynten er
 SpillIgjen.style.visibility = "hidden";
 kopp1.src = "bilder/kopp.png";
 kopp2.src = "bilder/kopp.png";
 kopp3.src = "bilder/kopp.png";
 
-//fargen på tilbakemeldingen skifter etterhvert farge
+//definere disse startsverdiene
+p_åpningsbeskjed.innerHTML = "Bak kva kopp trur du det ligg ein mynt? Du har " + AntForsok + " forsøk på å gjette deg fram til dette. Har du flaks?";
+// den endres mens man spiller. Altså når funksjonene aktiveres
+AntForsok.innerHTML = (totaltAntForsok-antForsok) + " forsøk igjen.";
+
+//fargen på tilbakemeldingen skifter etterhvert farge, sånn begynner det
 p_resultatUt.style.backgroundColor = "whitesmoke";
 p_resultatUt.style.color = "black";
 
@@ -52,13 +60,7 @@ function f_spillIgjen(){
 
 
 
-
-//
-AntForsok.innerHTML = (totaltAntForsok-antForsok) + " forsøk igjen.";
-p_åpningsbeskjed.innerHTML = "Bak kva kopp trur du det ligg ein mynt? Du har " + totaltAntForsok + " forsøk på å gjette deg fram til dette. Har du flaks?";
-
-
-// Genererer ein plassering for mynten, som indikerer om det ligg bak kopp 1, 2 eller 3
+// Generer tilfeldig plass hvor mynten skal ligge
 function f_plasserMynt() {
 	// Genererer eit tilfeldig tal mellom 1 og 3 og returnerer det deretter
 	var tilfeldig = Math.floor((Math.random()*3)+1);
@@ -67,9 +69,8 @@ function f_plasserMynt() {
 
 // Funksjon som setter gjettingen til brukaren til variabelen forslag, og deretter kallar på funksjonen som sjekkar resultatet.
 function f_gjettKopp(evt) {
-	var knapp = evt.target;
-	console.log(evt.target);
-	var koppValgt = knapp.getAttribute("data-kopp"); // returnerer kopp1, kopp2 eller kopp3, sjå HTML linje 13-15
+	let knapp = evt.target;
+	let koppValgt = knapp.getAttribute("data-kopp"); // returnerer kopp1, kopp2 eller kopp3
 	console.log("Du valgte: " + koppValgt);
 
 	// Sjekkar på data-kopp-attrbuttet satt i HTML
@@ -83,7 +84,7 @@ function f_gjettKopp(evt) {
 		forslag = 3;
 	}
 	
-	liggBak = f_plasserMynt(); // Legg premien bak ein ny tilfeldig kopp
+	liggBak = f_plasserMynt(); // Legger premien bak ein ny tilfeldig kopp
 
 	// Sjekkar resultat
 	f_resultat();
