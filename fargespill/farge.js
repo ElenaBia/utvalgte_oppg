@@ -26,7 +26,7 @@ function f_string(){
     //for å få rett farge til rett tidspunkt så MÅ i++ være nederst! ˆ_ˆ
 
     //test for å se om funksjonen funker
-    console.log("string");
+   // console.log("string");
 
     //her viser jeg bare hvilke farge man fikk i form av tekst på nettsiden
     farge_kode.style.display ="block";
@@ -36,8 +36,12 @@ function f_string(){
 
     //setter fargen det samme som i-verdien (akk no er det 0)
     document.body.style.background = ArrayString[i];
-    //øke i verdien med en for hver gang man trykker på knappen
     i++;
+
+    //hvis den går over siste farge i arrayen så skal vi starte på nytt
+    while (i>= ArrayString.length) { // Hvis vi kommer utenfor arrayens lengde
+      i = 0;
+  } 
 
 }
 
@@ -99,37 +103,37 @@ function f_rgb(){
 
 
 
-btn_hex.addEventListener("click",f_hex);
+btn_hex.addEventListener("click",f_BakgrunnHex);
 
 
-
-
-
-function f_hex(){
-
-  //let HexFarge = "#"+ Math.floor(Math.random()*16777215).toString(16);//https://css-tricks.com/snippets/javascript/random-hex-color/
- 
-  let arrHex = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
-  let HexFarge = "";
-
-    
- 
-  for(let hex_kode = 0; hex_kode < 6; hex_kode++) {
-    HexFarge += arrHex[getRandomIntInclusive(0,arrHex.length-1)];
-    return "#" + HexFarge; 
-  }
-   
-
-  console.log(HexFarge);
-
-
-  document.body.style.background = HexFarge;
+function f_BakgrunnHex(){
+  
+  let Kazaktstan = f_hex();
+  document.body.style.background = Kazaktstan;
 
   //her viser jeg bare hvilke farge man fikk i form av tekst på nettsiden
   farge_kode.style.display ="block";
   // farge_kode.style.color=HexFarge;
-  farge_kode.textContent = "Hex-kode: "+HexFarge;
+  farge_kode.textContent = "Hex-kode: "+Kazaktstan;
+
+
 }
+
+
+function f_hex(){
+  
+  //let HexFarge = "#"+ Math.floor(Math.random()*16777215).toString(16);//https://css-tricks.com/snippets/javascript/random-hex-color/
+
+  let arrHex = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
+  let HexFarge = "";
+ 
+  for(let hex_kode = 0; hex_kode < 6; hex_kode++) {
+    HexFarge += arrHex[getRandomIntInclusive(0,arrHex.length-1)];
+  }
+  return "#" + HexFarge; 
+   
+}
+
 
 
 function getRandomIntInclusive(min, max) {
