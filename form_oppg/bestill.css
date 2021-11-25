@@ -1,0 +1,21 @@
+main{
+  margin-left: 3em;
+  background-color: rgb(217, 235, 217);
+  width: 50%;
+  border: solid 2px gray;
+}
+body{
+    background-color: rgb(172, 219, 172);
+}
+
+section{
+    padding: 15px;
+}
+
+#kvittering{
+    padding: 30px;
+    line-height: 50px;
+}
+button{
+    margin-left: 80%;
+}

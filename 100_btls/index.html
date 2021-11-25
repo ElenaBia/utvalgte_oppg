@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 bottles</title>
+</head>
+<body>
+    
+    <form id="frm_flaske">
+        <section>
+            <label for="inpFlasker">antall flasker:</label>
+            <input type="text" name="flasker" id="inpFlasker" autofocus required >
+        </section>
+        <section>
+            <label for="FlaskeType">antall flasker:</label>
+            <select name="drikker" id="Type">
+                <option value="">Velg drikke type</option>
+                <option value="beer">Øl</option>
+                <option value="wine">Vin</option>
+                <option value="whiskey">whiskey</option>
+                <option value="baylis">Baylis</option>
+            </select>
+        </section>
+        <button id="btn" type="submit">Se</button>
+    </form> 
+
+    <article>
+        <p id="vers"></p>
+    </article>
+
+
+
+    <script>
+        let inpFlasker = document.getElementById("inpFlasker");
+        let drikkeType = document.getElementById("Type");
+        let vers = document.getElementById("vers");
+
+        const btn = document.getElementById("btn");
+
+        btn.onclick = function(evt){
+            evt.preventDefault();
+
+            f_vers(inpFlasker,drikkeType);
+        }
+
+        function f_vers(antallFlasker,Type){
+            let totalF = antallFlasker.value;
+            let vers = "";
+
+            for(var i=0, i<=antallFlasker.value, i++){
+
+                vers.innerHTML +=  " 100 bottles of " + Type+" on the wall. If one of those bottles should happen to fall." + Number(100-i) +"bottles of "+Type+" will be on the wall";
+            }
+        }
+
+
+
+        
+    </script>
+</body>
+</html>

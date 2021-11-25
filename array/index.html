@@ -18,7 +18,11 @@
 
 
     <script>
-        
+        /*startsverdien for summen
+        ----OBS----
+        den skal bli definert FØR arrayen*/  
+        let sum = 0;
+
       //lager først en tom array
         let array=[];
 
@@ -36,10 +40,7 @@
         //her begynner selve funksjonen. 
         function f_array(){
         
-            /*startsverdien for summen
-            ----OBS----
-            den skal tydligvis bli definert inni funksjonen, IKKE utenfor*/
-            let sum = 0;
+           
 
             //sier at så lenge i er mellom 0 og 100 så skal den øke med 1.
            for(let i=0;i<101;i++){
