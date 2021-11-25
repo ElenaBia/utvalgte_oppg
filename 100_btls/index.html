@@ -11,11 +11,12 @@
     <form id="frm_flaske">
         <section>
             <label for="inpFlasker">antall flasker:</label>
-            <input type="text" name="flasker" id="inpFlasker" autofocus required >
+            <input type="number" name="flasker" id="inpFlasker" min="0" max="100"  required >
         </section>
+
         <section>
-            <label for="FlaskeType">antall flasker:</label>
-            <select name="drikker" id="Type">
+            <label for="FlaskeType">alko type:</label>
+            <select name="drikker" id="Type" required>
                 <option value="">Velg drikke type</option>
                 <option value="beer">Øl</option>
                 <option value="wine">Vin</option>
@@ -35,22 +36,37 @@
     <script>
         let inpFlasker = document.getElementById("inpFlasker");
         let drikkeType = document.getElementById("Type");
-        let vers = document.getElementById("vers");
+        let vers_utskrift = document.getElementById("vers");
+        let form = document.getElementById("frm_flaske");
 
-        const btn = document.getElementById("btn");
+    
 
-        btn.onclick = function(evt){
+        //NB husk ikke knapp men form, men når du trykket på knappen så blir formen submitted
+        form.onsubmit = function(evt){
+            //hindrer at det som blir sendt inn ikke forsvinner
             evt.preventDefault();
-
+            //fletter inn en annen funksjon og bruker data fra input feltene
             f_vers(inpFlasker,drikkeType);
         }
 
         function f_vers(antallFlasker,Type){
+            //setter vers tomt
             let vers = "";
+            
+            //så lenge i er mindre eller lik antall flasker skal den øke med 1
+            for(i=1;i<=antallFlasker.value; i++){
+                //et tall høyere, slik at man ikke får samme tall to ganger
+                let opprinnelig_tall =Number(100-(i-1));
+                //i mindre enn hundre er resten av flasker på veggen
+                let rest_tall = Number(100-i);
 
-            for(i=0,i<antallFlasker.value, i++){
-                vers.innerHTML +=  " 100 bottles of " + Type+" on the wall. If one of those bottles should happen to fall." + Number(100-i) +"bottles of "+Type+" will be on the wall";
+                //setter inn verdiene i verset
+                vers +=  opprinnelig_tall  +" bottles of "+Type.value+" are on the wall.<br> 1 chugged down. Now there are " +rest_tall +" "+ Type.value+" bottles  on the wall.<br><br> ";
             }
+            //tester ut i consolen
+            console.log(vers);
+            //siden alt er ait så printer vi det ut på siden
+            vers_utskrift.innerHTML = vers;
         }
 
 
