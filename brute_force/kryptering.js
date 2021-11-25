@@ -109,7 +109,7 @@ function f_krypterMelding(){
 
     /*
 
-        Alternatic som er mindre komplisert
+        Alternativ som er mindre komplisert
         ----------------------------------
     */
     let resultat = "";
@@ -119,7 +119,7 @@ function f_krypterMelding(){
         if(alfabet.indexOf(bokstav) !== -1){
             resultat = resultat + krypterBokstav(bokstav,krypteringsnokkel);
         }
-        //hvis den er innenfor
+        //hvis den er utenfor
         else{
             resultat = resultat + bokstav;
         }
