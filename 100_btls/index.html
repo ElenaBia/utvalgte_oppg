@@ -46,11 +46,9 @@
         }
 
         function f_vers(antallFlasker,Type){
-            let totalF = antallFlasker.value;
             let vers = "";
 
-            for(var i=0, i<=antallFlasker.value, i++){
-
+            for(i=0,i<antallFlasker.value, i++){
                 vers.innerHTML +=  " 100 bottles of " + Type+" on the wall. If one of those bottles should happen to fall." + Number(100-i) +"bottles of "+Type+" will be on the wall";
             }
         }
