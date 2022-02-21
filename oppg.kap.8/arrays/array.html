@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s. 206</title>
+</head>
+<body>
+    
+    <!---oppg 1-->
+    <h1>oppg.1 Matliste</h1><br>
+    <article>
+        <div id="mat-liste">
+            <!---fylles ut av JS-->
+        </div>
+    </article>
+
+    <!---oppg 2-->
+    <h1>oppg.2  Trær -bruke splice</h1><br>
+    <article>
+        <div id="trær">
+            <!---fylles ut av JS-->
+        </div>
+    </article>
+
+
+    <!---oppg 3-->
+    <h1>oppg.3  Feriebilder</h1><br>
+    <article>
+        <button id="tilbake" data-type="bak"><-</button>
+    
+        <div >
+            <img src="" id="bilder">
+            <!---fylles ut av JS-->
+        </div>
+        <button id="fram" data-type="fram">-></button>
+    </article>
+
+</body>
+
+
+<script>
+    /* 
+            oppg 1
+    */
+    //henter div boksen som listen skal være i
+    let matListe = document.getElementById("mat-liste"); 
+    //lager array med mat varer
+    let matvarer = [" ost", " paprika", " brød", " kaviar"];
+    //pusher inn en ny matvare
+    matvarer.unshift("smør");
+
+    //tar ut siste verdi
+    matvarer.pop();
+
+    //bytter ut matvaren "brød" med "knekkebrød"
+    console.log(matvarer.indexOf(" brød")); //finner først indeksen av brød
+    matvarer.splice(3,1," knekkebrød");//bytter ut
+    //alternativt:
+   // matvarer[3]=" knekkebrød";
+
+   //printer ut i html svaret
+    matListe.innerHTML = matvarer;
+
+
+    /*
+
+            oppg. 2 - bruker bare splice og litt sort
+
+    */
+   
+    //henter div boksen som listen skal være i
+    let trær = document.getElementById("trær"); 
+    //lager array
+    let trærListe = [" lønn"," hassel"," bjørk"," eik"," blodlønn"," furur"," gran"];
+
+    //tar bort eik
+    trærListe.splice(trærListe.indexOf(" eik"),1);
+
+    //bytter bjørk med ordet hengebjørk
+    trærListe.splice(trærListe.indexOf(" bjørk"), 1, " hengebjørk");
+
+    //legger til to ekstra verdier på slutten av arrayen
+    trærListe.splice(trærListe.length,0," fjellbjørk"," dvergbjørk")
+
+    //sortere alt i arrayen
+    trærListe.sort();
+
+    //printer alt ut i html
+    trær.innerHTML=trærListe;
+
+    /*
+
+            oppg. 3 - data-type, knapp og bilder
+
+    */
+
+    //henter html elementer som skal brukes og manipuleres i JS
+    let bilder = document.getElementById("bilder");
+    let knappFram = document.getElementById("fram");
+    let knappBak = document.getElementById("tilbake");
+    
+    //lager en array for bildene
+    let bildeListe = ["art","hamburger","calc"]
+
+    knappFram.onclick=knappBak.onclick= function(evt){
+        let knapp = evt.target;//referer til knappen som trykkes
+
+        //henter data attributen for å vite hvilken knapp det trykkes
+        let data = knapp.getAttribute("data-type");
+        //sjekker i console om knappen stemmer
+        console.log(data);
+        //hvis det er fram-knappen som trykkes..
+        if(data=="fram"){
+            for (let i = 0; i < bildeListe.length; i++) {
+                //skal bildenene
+                bilder.src = "bilder/"+bildeListe[i]+".svg";
+            }
+        }
+        else{
+            for(let i=bildeListe.length; i>0;i--){
+                bilder.src = "bilder/"+bildeListe[i]+".svg";
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+</script>
+</html>
