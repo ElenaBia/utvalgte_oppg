@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fin kommentar generator</title>
+</head>
+<body>
+    <h1>fin kommentar generator</h1>
+
+    <!---brukeren skriver inn navnet-->
+    <form id="form">
+        <p>Skriv navnet til hvem du vil si fine kommentarer til</p>
+        <section>
+            <label for="navn">Navn:</label>
+            <input type="text" id="navn" placeholder="skriv navnet her" required>
+        </section>
+        <p>Velg antall fine kommentarer</p>
+        <!---brukeren skriver antall kommentar-->
+        <section>
+            <label for="antallKommentar">Antall kommentar:</label>
+            <select name="tall" id="antallKommentar" required>
+                <option></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </section><br>
+        <button>Ferdig? Send inn</button>
+    </form>
+
+
+    <h3 id="melding"><!---fylles ut av java--></h3>
+
+    <script src="kode.js"></script>
+</body>
+</html>

@@ -101,6 +101,8 @@
     let knappFram = document.getElementById("fram");
     let knappBak = document.getElementById("tilbake");
     
+    let aktivBilde = -1;
+
     //lager en array for bildene
     let bildeListe = ["art","hamburger","calc"]
 
@@ -112,16 +114,36 @@
         //sjekker i console om knappen stemmer
         console.log(data);
         //hvis det er fram-knappen som trykkes..
+      
         if(data=="fram"){
-            for (let i = 0; i < bildeListe.length; i++) {
-                //skal bildenene
-                bilder.src = "bilder/"+bildeListe[i]+".svg";
+           
+           //hver gang man klikekr på kanppen skal den øke med 1
+            aktivBilde++;
+            //hvis det går utenfor...
+            if(aktivBilde>bildeListe.length-1){
+                //skal variabelen tilbake til starten
+                aktivBilde =0;
             }
+            bilder.src = "bilder/"+bildeListe[aktivBilde]+".svg";
+            console.log("i=" + aktivBilde);
+
         }
+
         else{
-            for(let i=bildeListe.length; i>0;i--){
-                bilder.src = "bilder/"+bildeListe[i]+".svg";
+            //hver gang det trykkes på bakbildet så går det et bilde bak
+            aktivBilde--;
+
+            //hvis variabelen går utenfor raden.-..
+            if(aktivBilde<0){
+                //begynner man igjen med slutten av arrayen
+                aktivBilde =bildeListe.length-1;
             }
+
+            console.log("bak= " + aktivBilde);
+
+
+            bilder.src = "bilder/"+bildeListe[aktivBilde]+".svg";
+            
         }
 
     }
