@@ -44,6 +44,7 @@ form.onsubmit=function(evt){
     //aktiverer den andre funksjonen
     PrinteMelding();
 
+    //nå skal meldingen komme opp.
     melding.style.display = "block";
 
 }
