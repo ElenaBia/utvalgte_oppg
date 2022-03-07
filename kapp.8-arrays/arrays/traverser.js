@@ -31,12 +31,12 @@ for(let i=0; i<MatListe.length;i++){
       
 ---------------------------------------------------*/
 //array med bøker
-let ArrBøker = ["hush hush", "throne of glass", "deep", "Talon", "The sun is also a star"];
+let ArrBøker = ["hush hush", "throne of glass", "dancing in the rain", "Tim", "The sun is also a star"];
 
 let listBøker = document.getElementById("listeBøker");
 // a) traverser listen med for-løkke
 
-for(let i=0; i<ArrBøker.length; i++){
+/*for(let i=0; i<ArrBøker.length; i++){
     //gjør om alle titlene til stor og små bokstave
  let tittel= ArrBøker[i].toLowerCase();
  let Tittel = ArrBøker[i].toUpperCase();
@@ -54,12 +54,18 @@ for(let i=0; i<ArrBøker.length; i++){
         //får den bare være med stor bokstav
         boknavn = Tittel;
     }
+}*/
 
-    
+//skal nå sorte disse alfabetisk uavhengig om det var skrevet med stor eller liten bokstav
+function sammenligneTekst (a,b){
+    a = a.toUpperCase(); //navnene endrets til uppercase
+    b = b.toUpperCase();
+    //console.log(a + "," + b);
+    return b<a; //returnerer true og verdiene må bytte plass
 }
 
 //nå sorterer vi alt
-ArrBøker.sort();
+ArrBøker.sort(sammenligneTekst);
 
 //traverserer arrayen
 for(var bok of ArrBøker){
@@ -68,6 +74,24 @@ for(var bok of ArrBøker){
 
 }
 
+/* ------------------------------------------------
+ 
+                 Oppgave 4
+      
+---------------------------------------------------*/
+//henter ut html element som skal manipuleres
+let listeNavn = document.getElementById("listeNavn");
+let listeAlder = document.getElementById("listeAlder");
 
+//lager array med objekter
+let PersonArr =[ 
+    {navn: "Amanda", alder: 3}, 
+    {navn: "Ina", alder:15}, 
+    {navn:"Trond", alder: 54},
+    {navn: "Sivert", alder: 20}
+]
 
-
+for(let person of PersonArr){
+    listeNavn.innerHTML += "<li>" + person.navn + "</li>";
+    listeAlder.innerHTML+="<li>" + person.navn + "</li>";
+}
