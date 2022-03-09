@@ -79,7 +79,7 @@ function LeggTilElev(){
 }
 
 
-
+//når sorteringsknappen 
 btn_sort.onclick=function(){
     //lager en ny variabel for verdien av det brukeren valgte
     let sortering = inpSort.value;
@@ -142,11 +142,14 @@ btn_sort.onclick=function(){
     Funksjon der brukeren sletter en elev
 
 -----------------------------------------------------------*/
+//henter variabler fra html
 const btn_slett = document.getElementById("SlettE");
 let inpSlett = document.getElementById("InpSlett");
-
+//en anonym funksjon skal aktiveres når knappen for slett trykkes
 btn_slett.onclick =function (evt) {
+    //hindrer at informasjonen forsvinn
     evt.preventDefault();
+    //henter verdien av det brukeren skriver i feltet
     let elevNavn = inpSlett.value;
 
  //https://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-an-object-with-an-attribute-that-e
@@ -164,6 +167,7 @@ btn_slett.onclick =function (evt) {
             document.getElementById("tabell").innerHTML = LagTabell(elever);
             console.log(elever);
     }
+    //når navne ikke står i arrayen.
     else {
         console.log("Fant ikkje brukaren.");
     }
