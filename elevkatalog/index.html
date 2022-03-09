@@ -5,20 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elev katalog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
     <h1>Elevkataloge</h1>
 
-    <div>
+        
         <article><span>her kommer det liste med elevene</span>
             <ul id="listeElever"></ul>
         </article>
+    <div id="midtstilt">
+        <form id="frm" >
+            <!---Her fyller ut brukeren info om eleven-->
+            <section><span>Skriv elevens navn og karakter</span>
+                <input type="text" id="InpNavn" placeholder="Elevens navn" required>
+            </section>
+
+            <section><span>Skriv karakteren</span>
+                <select name="tall" id="InpKarakter" required>
+                    <option></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </section>
+
+            <section>
+                <button id="LeggE">Legg til elev</button>
+            </section>
+        </form>
+        <!-----frm for å slette en elev-->
+        <form id="frm_slett">
+            <section>
+                <span>Skriv navnet på eleven du vil slette</span>
+                <input type="text" id="InpSlett" placeholder="Elevens navn" required>
+                
+                    <button id="SlettE">Slett elev</button>
+            
+            </section>
+        </form>
+
+
         <article>
             <div id="tabell"></div>
         </article>
-    </div>
+        <!---her får brukeren mulighet til å sortere-->
+      
+        <section>
+      
+            <select name="sortering" id="InpS">
+                <option></option>
+                <option value="A">Alfabetisk</option>
+                <option value="Ø">Økende Karakter</option>
+                <option value="S">Synkende Karakter</option>
 
+            </select>
+            <button id="btn_sort">Sorter</button>
+        </section>
+    </div>
     
     <script src="elev.js"></script>
 </body>
