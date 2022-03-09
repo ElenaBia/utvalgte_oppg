@@ -60,7 +60,7 @@ let listBøker = document.getElementById("listeBøker");
 function sammenligneTekst (a,b){
     a = a.toUpperCase(); //navnene endrets til uppercase
     b = b.toUpperCase();
-    //console.log(a + "," + b);
+    console.log("Sammenligner " + a + ", og " + b);
     return b<a; //returnerer true og verdiene må bytte plass
 }
 
@@ -90,8 +90,45 @@ let PersonArr =[
     {navn:"Trond", alder: 54},
     {navn: "Sivert", alder: 20}
 ]
-
+//traverserer og skriver ut
 for(let person of PersonArr){
     listeNavn.innerHTML += "<li>" + person.navn + "</li>";
-    listeAlder.innerHTML+="<li>" + person.navn + "</li>";
+    listeAlder.innerHTML+="<li>" + person.alder + "</li>";
 }
+
+//sorterer navn og alder
+let navn =[];
+let alder=[];
+
+//traverserer arrayen med objekter og deler den opp i flee array
+for(let person of PersonArr){
+    navn.push(person.navn);
+    alder.push(person.alder);
+}
+
+//lager to funksjoner for å sortere de nye arrayene
+function SorterNavn(a,b) {
+    a = a.toUpperCase();
+    b = b.toUpperCase();
+    //sorterer alfabetisk økende
+    return b<a;
+};
+
+function sorterTall(a,b) {
+   //sorterer stigende
+    return  a- b;
+};
+//sorterer navn alfabetisk
+navn.sort(SorterNavn);
+//sorterer tallene
+alder.sort(sorterTall);
+//ser de i konsolen
+console.log(navn);
+console.log(alder);
+
+/* ------------------------------------------------
+ 
+    for å snu på rekkefølgen tar du inn i funksjonen til tall
+    return b-a, og i funksjonen til navn tar du return b>a
+      
+---------------------------------------------------*/
