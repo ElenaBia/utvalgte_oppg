@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inbygger eks. s.214</title>
+</head>
+<body>
+    <h1>se konsolen</h1>
+
+    <h2>objekter i map</h2>
+    <input type="text" placeholder="personnummer" id="inpPnr">
+    <div id="info">Skriv inn et personnummer for å søke etter et dyr</div>
+    
+    <script>
+
+
+        /*------------------------------
+                 lærer basic
+         -------------------------------*/ 
+        //lager mappen
+        let innbyggere= new Map();
+
+        // legger til innbygger, 001 = nøkkel og navn=verdi tilknyttet nøkkelen
+        innbyggere.set("001","KalleKanin");
+        innbyggere.set("002","Tassen");
+        innbyggere.set("003","KlausKu");
+
+        //finn antall innbyggere
+        console.log("antall innbyggere: "+innbyggere.size);
+
+        //ser om en viss nøkkel finnes i denne mappen
+        console.log(" har mappen nøkkel 002?  "+innbyggere.has("002"));
+
+        //sletter en innbygger
+        innbyggere.delete("002");
+        //ser hva vi får i konsolen
+        console.log("finnes innbygger med nøkkel 002: "+innbyggere.has("002"));
+
+        //ertsatter eninnbygger klara ku em kari måken
+        innbyggere.set("003","KAri måken");
+        //ser i konsolen
+        console.log("finnes innbygger med nøkkel 003? "+innbyggere.has("003"));
+        //henter verdien tilknyttet nøkkelen..
+        console.log("hvem er innbygger med nøkkel 003? "+innbyggere.get("003"));
+
+
+     /*------------------------------
+        objekter med map
+     -------------------------------*/ 
+     //henter el fra html
+        let inpPnr = document.getElementById("inpPnr");
+        let info = document.getElementById("info");
+
+        //lager objekter
+        let KalleKanin={
+            pnr:"001",
+            navn:"Kalle Kanin",
+            adresse:"Kaninsving 2"
+        };
+        let tassen={
+            pnr:"002",
+            navn:"Tassen",
+            adresse:"Kjøttveien 10"
+        };
+        let KlausKu={
+            pnr:"003",
+            navn:"klaus Ku",
+            adresse:"melkevein 4"
+        };
+
+        //lager en map
+        let dyrMap = new Map();
+
+        //pusher inn objektene, først nøkkelen som er unik og deretter veriden assosiert med den
+        dyrMap.set(KalleKanin.pnr,KalleKanin);
+        dyrMap.set(tassen.pnr,tassen);
+        dyrMap.set(KlausKu.pnr,KlausKu);
+
+        //kaller opp en funksjon 
+        inpPnr.oninput=function(){
+            //henter hva brukeren skrev inn
+            let personnummer = inpPnr.value;
+            //hvis vi har personnummeret
+            if(dyrMap.has(personnummer)){
+                //henter objektet
+                let dyr = dyrMap.get(personnummer);
+                 //henter deretter enkelt info fra objektet
+                info.innerHTML+="<p> Navn: " + dyr.navn+"</p>";
+                info.innerHTML+="<span> Adresse: "+dyr.adresse+"</span>";
+
+            }
+            else{
+                info.innerHTML="Skriv inn et personnummer for å søke etter et dyr";
+            }
+
+           
+        }
+
+    </script>
+</body>
+
+
+</html>

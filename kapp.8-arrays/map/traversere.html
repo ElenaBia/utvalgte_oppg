@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>traverser og for each ex</title>
+</head>
+<body>
+    <h1>traversere</h1>
+    <p>det er 3 måter å traversere på</p>
+    <article>
+        <section id="ex1">
+            <span>TRaverser ved nøkkel:  </span>
+        </section><br>
+        <section id="ex2">
+            <span>TRaverser ved verdier: </span>
+        </section><br>
+        <section id="ex3">TRaverser ved begge: </section>
+    </article>
+
+    <script>
+        //henter el fra html
+        let ex1 = document.getElementById("ex1");
+        let ex2 = document.getElementById("ex2");
+        let ex3 = document.getElementById("ex3");
+
+        //oppretter en ny map
+        let filmer = new Map();
+
+        //legger til elementer i map
+        filmer.set("t001","Ben hur");
+        filmer.set("t002","Scooby");
+        filmer.set("t003","Barbie");
+        filmer.set("t004","Spartacus");
+        filmer.set("t005","Kuzco");
+
+        //METODE 1 - traverser nøkkel
+        for(let filmId of filmer.keys()){
+            ex1.innerHTML+= " "+filmId+",";
+        }
+
+        //METODE 2 - traversere ved verdier
+        for(let film of filmer.values()){
+            ex2.innerHTML+= " "+film+",";
+        }
+
+        console.log(filmer);
+
+        //METODE 3 - traversere begge
+        filmer.forEach(function(film,filmID){
+            ex3.innerHTML+= " "+film+"-"+filmID+",";
+        });
+   
+    
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>foreach</title>
+</head>
+<body>
+
+    <h1>for each</h1>
+    <article>
+        <section>
+            <span>Array:</span>
+            <p id="pArr"></p>
+        </section>
+        <section>
+            <span>Set:</span>
+            <p id="pSet"></p>
+        </section>
+        <section>
+            <span>Map:</span>
+            <p id="pMap"></p>
+        </section>
+    </article>
+    <script>
+        let pArr = document.getElementById("pArr");
+        let pSet = document.getElementById("pSet");
+        let pMAå = document.getElementById("pMap");
+
+        let blomstARR =["sunf","tulip","rose","lily"];
+        //lagert en sett fra arr
+        let blomstSet = new Set(blomstARR);
+        //lager ny tom map
+        let blomstMap = new Map ();
+        //legger til alt i map
+        blomstMap.set(1,"sunf").set(2,"tulip").set(3,"rose").set(4,"lily");
+
+        blomstARR.forEach(function(blomst, index, array){
+          
+            console.log(blomst + " ");
+
+            if(blomst==="sunf"){
+                array[index]="dandelion";
+             
+            }
+            pArr.innerHTML+= blomst + " ";
+            
+        });
+
+    </script>
+    
+</body>
+</html>

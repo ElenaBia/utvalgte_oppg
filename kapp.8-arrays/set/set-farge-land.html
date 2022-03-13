@@ -11,7 +11,16 @@
     <h3>Oppgave 1</h3>
     <article>
         <p id="landSet"><!--fylles av JS--></p>
-    </article>
+    </article><br><br>
+    <h3>Oppg 3</h3>
+    <form id="frm_farge">
+        <span>Velg farge</span>
+        <input type="color" id="fargeInp">
+        <p id="printFarge"><ul></ul><!--fylles av JS--></p>
+        <button id="b_farge">Send inn</button>
+    </form>
+
+
      
 
 
@@ -53,7 +62,40 @@
         /*------------------------------
                  oppg 3
          -------------------------------*/ 
+         //henter elementer fra html
+        let fargeInp = document.getElementById("fargeInp");
+        let printFarge = document.getElementById("printFarge");
+        let frm_farge = document.getElementById("frm_farge");
 
+        //lager ny set
+        let fargeSet = new Set();
+
+        //når vi trykker på knappen som er inn i formen..
+        frm_farge.onsubmit = function(evt){
+
+            //forhindrer at vi oppdaterer siden
+            evt.preventDefault();
+                    
+            //finner hvilken farge man valgte
+            let farge = fargeInp.value;
+
+            //sjekker om fargen er der fra før
+            if(fargeSet.has(farge)){
+                //gir tydelig beskjed i html og konsolen
+                alert("Du har allerede valgt denne fargen!");
+                console.log("NEEEEEIIII");
+            }
+            else{//ellers..
+
+                //legger til i settet
+                fargeSet.add(farge);
+
+                //printer den ut
+                printFarge.innerHTML +="<li style='color:"+farge+"';> " + farge + "</li>";
+            }
+
+           
+        }
 
 
     </script>
