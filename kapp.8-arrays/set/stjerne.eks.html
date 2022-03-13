@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stjerner</title>
+</head>
+<body>
+
+    <script>
+        //lager en tom set
+        let stjerner = new Set();
+        //legger inn verdier i kolleksjonen
+        stjerner.add("Sirius");
+        stjerner.add("Vega");
+        stjerner.add("Pollux");
+        //Viser teksten true pga. listen har Vega
+        document.write(" "+stjerner.has("Vega"));
+
+        //Viser teksten false
+        document.write(" "+stjerner.has("Felix"));
+
+
+        //Viser antall verdier 3
+        document.write(" "+stjerner.size);
+        //ingen effekt
+        stjerner.add("Sirius");
+
+        //Fjerner Pollux fra listen
+        stjerner.delete("Pollux");
+
+        //fjerner alle stjerner
+        stjerner.clear();
+
+        //viser 0
+        document.write(" "+ stjerner.size);
+
+
+      
+    </script>
+    
+</body>
+</html>

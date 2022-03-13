@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set-oppgaver</title>
+</head>
+<body>
+    
+    <h3>Oppgave 1</h3>
+    <article>
+        <p id="landSet"><!--fylles av JS--></p>
+    </article>
+     
+
+
+    <script>
+        /*------------------------------
+                 oppg 1
+         -------------------------------*/  
+         let outputLand = document.getElementById("landSet"); 
+
+         //lager en set
+         let landSet = new Set(["romania","kina","pakistan","kongo"]);
+
+        //for hver element i settet skal en anonym funksjon aktiveres
+        landSet.forEach(function (LandInn){//landInn er variablene i settet
+            //printer i console
+            console.log("landet er "+LandInn);
+            //printer ut
+            outputLand.innerHTML+=LandInn+ " ";
+        });
+        //  Alternativt kan du gjøre setett til en array og printe ut
+
+          /*------------------------------
+                 oppg 2
+         -------------------------------*/ 
+        //konverterer settet til en array
+         let landArray = Array.from(landSet);
+         //sorterer arrayen
+         landArray.sort();
+         console.log(landArray);
+        
+         //printer ut en mekdubg
+         outputLand.innerHTML+="<br> Printer ut nå fra array - sortert: <br>";
+
+         for(land of landArray){
+              //printer ut
+            outputLand.innerHTML+=land+",  ";
+        }
+
+        /*------------------------------
+                 oppg 3
+         -------------------------------*/ 
+
+
+
+    </script>
+</body>
+</html>
