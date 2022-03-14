@@ -5,24 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skjema</title>
+
+    <style>
+    
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td {
+        border: 1px solid red;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: green;
+      }
+      th {
+        border: 1px solid blue;
+        text-align: left;
+        padding: 8px;
+      }
+
+      </style>
 </head>
 <body>
 
+
     <h1>oversikt over skreddfarer</h1>
     <!----starter tabell---->
-    <table>
+    <table id="tabell">
         <tr>
           <th>Region</th>
-          <th>Type skredd</th>
+          <th>Sted</th>
           <th>Skredd fare</th>
         </tr>
         <tr>
-          <td><!----fylles av js--></td>
+        <!----fylles av js-->
+        <td>hei</td>
+        <td>hei</td>
+        <td>hei</td>
+  
         </tr>
         <tr>
-          <td><!----fylles av js--></td>
-        </tr>
+          <!----fylles av js-->
+          <td>hei</td>
+          <td>hei</td>
+          <td>hei</td>
+    
+          </tr>
+      
+         
+        
+   
       </table>
 
+      <script>
+        //henter html el.
+        let htmlTabell= document.getElementById("tabell");
+
+        /*-------------------------------
+        lager liste med ønsket regioner
+        --------------------------------*/
+
+        var skredObservasjonar = [  
+            {område: "Vestland", stednavn: "Oksen", skredfare : 4}, 
+            {område: "Østlandet", stednavn: "Vassfjøro", skredfare: 3}, 
+            {område: "Nord-Norge", stednavn: "Lyngen", skredfare: 6}, 
+            {område: "Hordaland", stednavn: "Ingebjørgfjellet", skredfare: 5},
+            {område: "Song og fjordane", stednavn: "Lofoten", skredfare: 3}
+        ]
+      
+          for(let info of skredObservasjonar){
+            //henter ut stedene, regionene og faren
+            //htmlTabell.innerHTML+="<tr><td><a href="+info.område+">"+info.område+"</td><td>"+info.stednavn+"</td><td>"+info.skredfare+"</td></tr>";
+
+             
+  
+
+              //sjekker i consolen
+              console.log(info);
+              //henter ut stedene
+          
+
+          }
+
+        
+            
+         
+      </script>
+      
 </body>
 </html>

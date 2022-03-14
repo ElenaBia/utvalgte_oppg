@@ -7,6 +7,7 @@
     <title>Snøskreddfare</title>
 </head>
 <body>
+
     <h1>Velg nivå </h1>
 
      <!---brukeren velge fare nivået -->
@@ -31,8 +32,6 @@
 
     <script>
         //henter ut html el.
-        let inpNivå =document.getElementById("fareNivå");
-      
         let utVurdering =document.getElementById("utVurdering");
         let frm = document.getElementById("form");
 
@@ -42,13 +41,13 @@
             evt.preventDefault();
 
             //henter ut verdien av hva som står i inp-felt. (hver gang det sendes inn på nytt)
-            let fareNivå = inpNivå.value; 
+            let inpNivå =document.getElementById("fareNivå").value;
             //test i konsolen
             console.log("kjører");
-            //console.log(inpNivå.value);
+           
 
             //switch setning som skal determinere fare nivået
-            switch(fareNivå){
+            switch(inpNivå){
                 //sjekker om man valgte 1 og gir tilbakemelding 
                 case "1": 
                 utVurdering.innerHTML="Det er lite fare.";
@@ -83,8 +82,8 @@
                 utVurdering.style.color="black";
                 console.log("5");
                 break;
-            }
-        }
+            };
+        };
 
     </script>
 </body>
