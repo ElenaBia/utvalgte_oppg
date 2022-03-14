@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snøskreddfare</title>
+</head>
+<body>
+    <h1>Velg nivå </h1>
+
+     <!---brukeren velge farenivået nivået-->
+     <form id="form">
+        <section>
+            <label for="fareNivå">Velg fareNivå:</label>
+            <select name="nivå" id="fareNivå" required>
+                <option></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </section><br>
+        <!--knapp man trykker på-->
+        <button>Ferdig? Send inn</button>
+    </form>
+
+    <h3 id="utVurdering"></h3>
+
+    <script>
+        //henter ut html el.
+        let inpNivå = document.getElementById("fareNivå").value;
+        let utVurdering =document.getElementById("utVurdering");
+        
+        let frm = document.getElementById("form");
+
+        frm.addEventListener("onsubmit",f_VurderFare);
+
+        function f_VurderFare(evt){
+
+
+            switch(inpNivå){
+                //sjekker om man valgte 1
+                case "1": 
+                utVurdering.innerHTML="Det er lite fare.";
+                utVurdering.style.color="green";
+                console.log("1");
+                break;
+
+                case "2": 
+                utVurdering.innerHTML="Det er litt farlig.";
+                utVurdering.style.color="yellow";
+                console.log("2");
+                break;
+
+                case "3": 
+                utVurdering.innerHTML="Det er ganske farlig.";
+                utVurdering.style.color="orange";
+                console.log("3");
+                break;
+
+                case "4": 
+                utVurdering.innerHTML="Det er veldig farlig";
+                utVurdering.style.color="red";
+                console.log("4");
+                break;
+
+                case "5": 
+                utVurdering.innerHTML="Søk dekning!";
+                utVurdering.style.color="black";
+                console.log("5");
+                break;
+            }
+        }
+
+    </script>
+</body>
+</html>
