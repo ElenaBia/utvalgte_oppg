@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nodelist</title>
+</head>
+<body>
+    <h1>oppg1</h1>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p><br>
+
+    <!---loop create div element-->
+    <h1>oppg 3</h1>
+    <div id="kontainer">
+        <!---her skal de 100 div boksene komme-->
+    </div>
+    
+    <script>
+        //lager en nodelist
+        let nodelist = document.getElementsByTagName("p");
+
+        //lager listen til array - oppg. 2
+        let pArray =Array.from(nodelist);
+        //traverserer array av listen
+        for(p of pArray){
+            //leker med hva som skal stå inni og se ut
+            p.innerHTML="avsnitt er slutt";
+            p.style.border = "solid red 2px";
+            p.style.width ="10em";
+        }
+
+        //oppg 3
+
+        //lager en stor kontainer
+        let kontainer = document.getElementById("kontainer");
+        kontainer.style.border = "solid green 2px";
+        kontainer.style.width ="10em";
+
+
+        //lager en løkke opp til 100
+        for(let i =0;i<100;i++){
+            //hver gang skal det lages en ny div boks
+            let nyDiv =document.createElement("div");
+            //har noen ting jeg la til
+            nyDiv.innerHTML="hei";
+            nyDiv.style.border = "solid pink 2px";
+            nyDiv.style.width="10em";
+            //bruker denne for å skille ml den store kontainere og de små
+            nyDiv.className="boks";
+
+            //limer inn alle de små div-ene i den store div-en
+            kontainer.appendChild(nyDiv);
+            
+        }
+        //sjekker i konsolen
+        console.log(kontainer);
+
+        //henter alle div-ene som ligger i den store kontaineren
+        let divNodelist = document.getElementsByClassName("boks");
+
+        //gjør om til array
+       let divArray = Array.from(divNodelist);
+
+
+        //funksjon som hjelper oss med å finne tall
+        function tallGenerator(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); //Max og min tallet er inkludert
+        }
+
+        //hver div boks..
+        for(let boks of divArray){
+            //skal ha tilfeldig bredde og høyde
+            boks.style.width =String(tallGenerator(20,100)) + "px";
+            boks.style.height =String(tallGenerator(15,30)) + "px";   
+        }
+    
+        //oppg b
+        function Tilfeldighet(evt){
+            let boks = evt.target;//referer til boksen som trigrer funksjonen
+            //tester at det funker
+            console.log("funksjonen kjører");
+
+            //sikrer at det er bare de små boksene som blir påvirket
+            if(boks.className==="boks"){
+                //får tilfeldig høyde og bredde
+                boks.style.width =String(tallGenerator(20,100)) + "px";
+                boks.style.height =String(tallGenerator(15,30)) + "px";   
+                //får tilfeldig farge
+                boks.style.backgroundColor = String(f_hex());
+            }
+            //ellers sier vi ifra at den store kontaineren klikkes
+            else{
+                console.log("stor kontainer klikkes");
+            }
+
+        }
+       
+
+        //aktiverer en funksjon
+        kontainer.addEventListener("click",Tilfeldighet);
+
+        //tester litt ulikt
+        console.log("test: "+ kontainer.lastChild.className); //printer boks
+        console.log("test2: "+ kontainer.childElementCount); //teller barn
+
+        //farge generator
+        function f_hex(){
+            
+            //let HexFarge = "#"+ Math.floor(Math.random()*16777215).toString(16);//https://css-tricks.com/snippets/javascript/random-hex-color/
+
+            let arrHex = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
+            let HexFarge = "";
+            
+            for(let hex_kode = 0; hex_kode < 6; hex_kode++) {
+                HexFarge += arrHex[tallGenerator(0,arrHex.length-1)];
+            }
+            return "#" + HexFarge; 
+            
+        }
+
+        
+    
+    </script>
+</body>
+</html>

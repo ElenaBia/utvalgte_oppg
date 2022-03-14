@@ -24,29 +24,92 @@
         </section>
     </article>
     <script>
+         /*------------------------------
+          hvordan printe ut set og map?
+
+          ex. array:
+         document.write(blomstARR); så blir alle
+         verdiene i arrayen printet ut.
+         -------------------------------*/ 
+
+
+
         let pArr = document.getElementById("pArr");
         let pSet = document.getElementById("pSet");
-        let pMAå = document.getElementById("pMap");
+        let pMAp = document.getElementById("pMap");
 
         let blomstARR =["sunf","tulip","rose","lily"];
         //lagert en sett fra arr
         let blomstSet = new Set(blomstARR);
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!! 
+       // document.write(blomstSet);
+        //console.log(blomstSet);
+
         //lager ny tom map
         let blomstMap = new Map ();
         //legger til alt i map
         blomstMap.set(1,"sunf").set(2,"tulip").set(3,"rose").set(4,"lily");
 
-        blomstARR.forEach(function(blomst, index, array){
-          
-            console.log(blomst + " ");
 
+        /*------------------------------
+          array
+         -------------------------------*/ 
+
+        //for hver el i array skal funksjonenen gjelde
+       blomstARR.forEach(function(blomst, index, array){
+
+            //bytter ut en variabel
             if(blomst==="sunf"){
                 array[index]="dandelion";
              
             }
-            pArr.innerHTML+= blomst + " ";
+            //print
+           // pArr.innerHTML+= array[index] + ", ";
+        });
+
+        pArr.innerHTML+="Array: "+blomstARR;
+
+        /*------------------------------
+          SET
+         -------------------------------*/ 
+
+        blomstSet.forEach(function(blomst,key,set){
+         
+            //console.log("Set: "+ blomst);
+    
+            if(blomst==="sunf"){
+                set.delete(key);
+                set.delete()
+                set.add("dandelion");
+            }
             
         });
+        //pritner i konsol
+        console.log(blomstSet);
+        //printer i html -- funker ikke
+        pSet.innerHTML+= "set "+ blomstSet;
+
+        /*------------------------------
+          MAP
+         -------------------------------*/ 
+
+        blomstMap.forEach(function(blomst,key,map){
+
+            if(blomst==="sunf"){
+                map.set(key,"dandelion");
+            }
+            //printer ut i html
+
+        });
+         //pritner i konsol
+        console.log(blomstMap);
+         //printer i html -- funker ikke
+        pMAp.innerHTML+="MAP: "+blomstMap;
+
+
+
+       
 
     </script>
     
