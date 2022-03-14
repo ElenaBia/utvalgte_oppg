@@ -37,7 +37,7 @@ form.onsubmit=function(evt){
     evt.preventDefault();
     //ser verdiene i konsolen
     console.log("navn = " + navn.value);
-    console.log("antall Kommentarer = " +antallK.value);
+    console.log("antall Kommentarer = " + antallK.value);
     //fjerner formen for å gi plass til meldingen
     form.style.display ="none";
 

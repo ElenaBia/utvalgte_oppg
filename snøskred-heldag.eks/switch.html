@@ -9,10 +9,10 @@
 <body>
     <h1>Velg nivå </h1>
 
-     <!---brukeren velge farenivået nivået-->
+     <!---brukeren velge fare nivået -->
      <form id="form">
         <section>
-            <label for="fareNivå">Velg fareNivå:</label>
+            <label for="fareNivå">Velg fare nivå:</label>
             <select name="nivå" id="fareNivå" required>
                 <option></option>
                 <option value="1">1</option>
@@ -24,48 +24,60 @@
         </section><br>
         <!--knapp man trykker på-->
         <button>Ferdig? Send inn</button>
+          <!---avslutter formen-->
     </form>
 
     <h3 id="utVurdering"></h3>
 
     <script>
         //henter ut html el.
-        let inpNivå = document.getElementById("fareNivå").value;
+        let inpNivå =document.getElementById("fareNivå");
+      
         let utVurdering =document.getElementById("utVurdering");
-        
         let frm = document.getElementById("form");
 
-        frm.addEventListener("onsubmit",f_VurderFare);
 
-        function f_VurderFare(evt){
+        frm.onsubmit = function(evt){
+            //hindrer at vi oppdaterer siden og mister alt
+            evt.preventDefault();
 
+            //henter ut verdien av hva som står i inp-felt. (hver gang det sendes inn på nytt)
+            let fareNivå = inpNivå.value; 
+            //test i konsolen
+            console.log("kjører");
+            //console.log(inpNivå.value);
 
-            switch(inpNivå){
-                //sjekker om man valgte 1
+            //switch setning som skal determinere fare nivået
+            switch(fareNivå){
+                //sjekker om man valgte 1 og gir tilbakemelding 
                 case "1": 
                 utVurdering.innerHTML="Det er lite fare.";
                 utVurdering.style.color="green";
                 console.log("1");
                 break;
 
+                 //sjekker om man valgte 2 og gir tilbakemelding 
                 case "2": 
                 utVurdering.innerHTML="Det er litt farlig.";
                 utVurdering.style.color="yellow";
                 console.log("2");
                 break;
 
+                 //sjekker om man valgte 3 og gir tilbakemelding 
                 case "3": 
                 utVurdering.innerHTML="Det er ganske farlig.";
                 utVurdering.style.color="orange";
                 console.log("3");
                 break;
 
+                 //sjekker om man valgte 4 og gir tilbakemelding 
                 case "4": 
                 utVurdering.innerHTML="Det er veldig farlig";
                 utVurdering.style.color="red";
                 console.log("4");
                 break;
 
+                //sjekker om man valgte 5 og gir tilbakemelding 
                 case "5": 
                 utVurdering.innerHTML="Søk dekning!";
                 utVurdering.style.color="black";
