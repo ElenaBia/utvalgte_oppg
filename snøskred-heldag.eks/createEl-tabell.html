@@ -17,22 +17,42 @@
      <button id="btn_alfa" data-btn="alfa">Sorter alfabetisk region</button>
      <button id="btn_fare" data-btn="fare">Sorter etter skredfarer</button><br><br>
 
-     <form id="frm_søk">
-    <!----input felt---->
-        <span>Søk etter spesifikk info</span><br>
-        <input type="text" id="inpRegion" placeholder="Søk etter region"><br>
-        <input type="number" id="inpTall" placeholder="Søk etter skreddfare" max="5" min="1" width="100px">
-        <button>Søk</button><br><br>
-    </form>
+    <article>
+    <div id="flex">
+        <form id="frm_søk">
+        <!----input felt---->
+            <span>Søk etter spesifikk info</span><br>
+            <input type="text" id="inpRegion" placeholder="Søk etter region"><br>
+            <input type="number" id="inpTall" placeholder="Søk etter skreddfare" max="5" min="1" width="100px"><br>
+           <!----knapp som submitter---->
+            <button>Søk</button>
+        </form>
 
-     <!----input felt---->
-     <span>Skriv inn endringer</span><br>
-     <input type="text" id="inpEndreRegion" placeholder="Endre region"><br>
-     <input type="text" id="inpEndreSted" placeholder="Endre stednavn"><br>
-     <input type="number" id="inpEndreTall" placeholder="Endre skreddfare" max="5" min="1" width="100px">
-     
-     <button>Send inn endringer</button><br><br>
-    </form>
+        <form id="frm_endre">
+        <!----input felt---->
+        <span>Skriv inn endringer</span><br>
+        <input type="text" id="inpEndreRegion" placeholder="Velg region">
+        <input type="text" id="inpNyRegion" placeholder="Endre region navn"><br>
+        <input type="text" id="inpEndreStedNavn" placeholder="Velg sted">
+        <input type="text" id="inpNyStedNavn" placeholder="Endre stedsnavn"><br>
+        
+                   <!----knapp som submitter---->
+        <button>Send inn endringer</button><br>
+
+        </form>
+        <!----Her kan brukeren legge til ny info---->
+        <form id="frm_leggTil">
+            <!----input felt---->
+            <span>Legg inn den nye informasjonen i input-feltet</span><br>
+                <!----Begge er required pga. det er nødvendig å ha nok info til å legge til sted--->
+            <input type="text" id="inpPushRegion" placeholder="Velg sted" required><br>
+            <input type="text" id="inpPushStedNavn" placeholder="Velg stedsnavn" required><br>
+        
+            <!----knapp som submitter---->
+        <button>Legg til</button><br><br>
+        </form>
+    </div> 
+    </article>
 
 
     <!----starter tabell---->

@@ -6,10 +6,13 @@ let utTabell = document.getElementById("utTabell");
 let frm_søk = document.getElementById("frm_søk");
 let divSøkeInfo = document.getElementById("spesifikkInfo");
 let frm_endre = document.getElementById("frm_endre");
+let frm_leggTil = document.getElementById("frm_leggTil");
 
 //gjemmer div-en
 divSøkeInfo.style.display="none";
 
+//lager en tom objekt som skal pushes inn om man ønsker å legge til ny info
+let objekt = {};
 
 //funksjon som sorterer aktiveres når kanppene trykkes
 btn_alfa.addEventListener("click",f_sorter);
@@ -18,6 +21,7 @@ btn_fare.addEventListener("click",f_sorter);
 //funksjon påkalles når frm blir sendt
 frm_søk.addEventListener("submit",f_Søking);
 frm_endre.addEventListener("submit",f_endre);
+
 
 /*-------------------------------
 lager liste med ønsket regioner
@@ -72,7 +76,7 @@ function f_lagTabell(skredObservasjonar){
     //lager loop for å pushe info fra array inn i tabell
     for(let info of skredObservasjonar){
         //sjekker i consolen først
-        console.log(info);
+        //console.log(info);
         //lager rad 
         let rad = document.createElement("tr");
         
@@ -137,7 +141,7 @@ Funksjoner
 f_lagTabell(skredObservasjonar);
 
 
-//funksjon som gir vurderer skredfare
+//funksjon som  vurderer skredfare
 function f_fare(celle){
     //finnner først fare nivåe og gjør det om til tall
     let fareNivå = Number(celle.innerHTML);
@@ -260,15 +264,103 @@ function f_Søking(evt){
 //funksjon som endrer på informasjonen
 function f_endre(evt){
     evt.preventDefault();//hindrer at siden oppdateres
-
+    
     //henter verdiene som brukeren legger i inp feltet
-    let infoRegion = document.getElementById("inpEndreRegion").value;
-    let infoSted = document.getElementById("inpEndreSted").value;
-    let infoFare = document.getElementById("inpEndreTall").value;
+    let inpERegion = document.getElementById("inpEndreRegion").value;
+    let inpNyRegion = document.getElementById("inpNyRegion").value;
+    let inpESted = document.getElementById("inpEndreStedNavn").value;
+    let inpNySted =document.getElementById("inpNyStedNavn").value;
 
-    //gjør om til sett
-    let SetOBservasjon = new Set(skredObservasjonar);
-    console.log(SetOBservasjon);
+    //traverserer array for hver objekt "info"
+    for(let info of skredObservasjonar){
+        //hvis inp info finnes i observasjonsarrayen
+        if(inpERegion===info.område){
+            //finner i consolene
+            //console.log("fant region i array som er "+info.område);
 
+            //bytterr regionens navn til det man valgte
+            info.område=inpNyRegion;
+         
+            //bygger tabellen på nytt med det nye navnet
+            f_lagTabell(skredObservasjonar);
+
+        }
+        else if(inpESted===info.stednavn){
+              //bytter områdets navn til det man valgte
+              info.stednavn=inpNySted;
+              //bygger tabellen på nytt med det nye navnet
+              f_lagTabell(skredObservasjonar);
+        }
+    }
 }
 
+//funksjon som pusher inn ny info
+
+frm_leggTil.onsubmit= function (evt){
+    evt.preventDefault();//hindrer at siden oppdateres
+
+    //henter variabler fra inp feltet
+    let inpPushRegion = document.getElementById("inpPushRegion");
+    let inpPushStedNavn = document.getElementById("inpPushStedNavn");
+    
+
+
+    //lager en map av skredObservasjon arrayen
+    let mapObservasjon = new Map(
+        skredObservasjonar.map(obj => {
+            //objektene i map-en skal ha bare stednavnet=nøkkel og regionen=verdi
+          return [obj.stednavn,obj.område];
+        }),
+    );
+    
+    //lager et objekt av info fra inp feltet
+    objekt={område:inpPushRegion.value,stednavn:inpPushStedNavn.value};
+
+
+    
+    //ser først om mappen har stedet fra inp-feltet
+    if(mapObservasjon.has(objekt.stednavn)){
+    
+        console.log("Stedet finnes fra før.. sjekker om det er i samme region.")
+        //sjekker om stedet hører til en region der den allerede eksiterer i
+        f_sjekkRegion(objekt.stednavn);
+
+        //hvis regionen har registrert samme sted før..
+        if(true){
+            //tester
+            console.log("sletter objekt --> printer ikke det ut");
+            //sletter det som ligger i inp feltet - HUSK .value ikke .innerhtml!! for inp-felt
+            inpPushRegion.value="";
+            inpPushStedNavn.value="";
+
+           
+        }
+    }
+    else {
+            //lager en ny objekt med info fra inp, men koff tilfeldig skredfare? 
+            //Fordi den endres hver dag i praksis :D
+            objekt={område:inpPushRegion.value,stednavn:inpPushStedNavn.value,skredfare:tallGenerator(1,5)};
+            //legger inn objektet i array
+            skredObservasjonar.push(objekt);
+
+            //tester
+            console.log("printer ut ny rad i tabell");
+
+            //bygger tabellen på nytt med den nye info-en
+            f_lagTabell(skredObservasjonar);
+
+    
+        }
+
+  
+}
+
+//funksjon som sjekker om regionen er der fra før
+function f_sjekkRegion(sted){
+
+    for(let info of skredObservasjonar){
+        if(sted===info.områder){
+            return true;
+        };
+    };
+};
