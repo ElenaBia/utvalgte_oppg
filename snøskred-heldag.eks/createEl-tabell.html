@@ -19,10 +19,21 @@
 
      <form id="frm_søk">
     <!----input felt---->
+        <span>Søk etter spesifikk info</span><br>
         <input type="text" id="inpRegion" placeholder="Søk etter region"><br>
         <input type="number" id="inpTall" placeholder="Søk etter skreddfare" max="5" min="1" width="100px">
         <button>Søk</button><br><br>
     </form>
+
+     <!----input felt---->
+     <span>Skriv inn endringer</span><br>
+     <input type="text" id="inpEndreRegion" placeholder="Endre region"><br>
+     <input type="text" id="inpEndreSted" placeholder="Endre stednavn"><br>
+     <input type="number" id="inpEndreTall" placeholder="Endre skreddfare" max="5" min="1" width="100px">
+     
+     <button>Send inn endringer</button><br><br>
+    </form>
+
 
     <!----starter tabell---->
     <div id="utTabell"> <!----fylles av js--></div><br>

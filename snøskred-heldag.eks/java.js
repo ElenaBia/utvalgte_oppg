@@ -5,6 +5,7 @@ let btn_fare = document.getElementById("btn_fare");
 let utTabell = document.getElementById("utTabell");
 let frm_søk = document.getElementById("frm_søk");
 let divSøkeInfo = document.getElementById("spesifikkInfo");
+let frm_endre = document.getElementById("frm_endre");
 
 //gjemmer div-en
 divSøkeInfo.style.display="none";
@@ -16,6 +17,7 @@ btn_fare.addEventListener("click",f_sorter);
 
 //funksjon påkalles når frm blir sendt
 frm_søk.addEventListener("submit",f_Søking);
+frm_endre.addEventListener("submit",f_endre);
 
 /*-------------------------------
 lager liste med ønsket regioner
@@ -212,8 +214,7 @@ function f_sorter(evt){
 }
 
 
-
- 
+ //funksjon som viser det man søker opp
 function f_Søking(evt){
     evt.preventDefault();//hindrer at siden oppdateres
 
@@ -256,4 +257,18 @@ function f_Søking(evt){
 
 }
 
+//funksjon som endrer på informasjonen
+function f_endre(evt){
+    evt.preventDefault();//hindrer at siden oppdateres
+
+    //henter verdiene som brukeren legger i inp feltet
+    let infoRegion = document.getElementById("inpEndreRegion").value;
+    let infoSted = document.getElementById("inpEndreSted").value;
+    let infoFare = document.getElementById("inpEndreTall").value;
+
+    //gjør om til sett
+    let SetOBservasjon = new Set(skredObservasjonar);
+    console.log(SetOBservasjon);
+
+}
 
