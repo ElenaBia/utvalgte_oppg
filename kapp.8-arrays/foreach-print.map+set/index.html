@@ -73,18 +73,20 @@
           SET
          -------------------------------*/ 
 
-        blomstSet.forEach(function(blomst,key,set){
+        blomstSet.forEach(function(blomst,unikVerdi,set){
          
             
             //bytter sunf med dandelion
             if(blomst==="sunf"){
-                set.delete(key);
+                set.delete(unikVerdi);
                 set.delete()
                 set.add("dandelion");
             }
 
               //printer i html -- funker ikke
             pSet.innerHTML+= blomst+", ";
+
+           
             
         });
         //pritner i konsol

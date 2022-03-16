@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skjema</title>
+
+    <link rel="stylesheet" href="snøskredd.css">
+</head>
+<body>
+
+
+    <h1>oversikt over skreddfarer</h1><br>
+
+     <!---Knapper for sortering-->
+     <button id="btn_alfa" data-btn="alfa">Sorter alfabetisk region</button>
+     <button id="btn_fare" data-btn="fare">Sorter etter skredfarer</button><br><br>
+
+     <form id="frm_søk">
+    <!----input felt---->
+        <input type="text" id="inpRegion" placeholder="Søk etter region"><br>
+        <input type="number" id="inpTall" placeholder="Søk etter skreddfare" max="5" min="1" width="100px">
+        <button>Søk</button><br><br>
+    </form>
+
+    <!----starter tabell---->
+    <div id="utTabell"> <!----fylles av js--></div><br>
+
+     <!----printer ut individuell info---->
+    <div > 
+         <h3>Her kommer spesifikk info</h3><br>
+         <div id="spesifikkInfo"><ul></ul>  <!----fylles av js--></div>
+    </div>
+       
+  
+
+        <script src="java.js"></script>
+</body>
+</html>
