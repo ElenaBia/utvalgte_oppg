@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema-velgjer</title>
+    <link rel="stylesheet" href="temavelger-start.css">
+</head>
+<body>
+    
+        <!---Her er dropdownen med de ulike tema, når
+            den klikkes skal tema "aktiveres" og stilen endres---->
+            <h1>Velg tema :D</h1>
+    <section>
+        <span>Velg tema som finnes fra før:</span>
+        <select id="dropdown">
+            <option>Dark</option>
+            <option>Light</option>
+        </select>
+    </section>
+
+        <!---Her er formen brukeren skal fylle ut for
+        å sende inn et nytt tema; alle feltene er "obligatorisk",
+        men i praksis vil det alltid være forrige farge valgt
+        om man ikke endrer på dette---->
+    
+        <form id="frm_sendTema">
+            <span>velg tekstfarge:</span>
+            <input type="color" id="inpTekstFarge" required >
+            <span>velg bakgrunnsfarge:</span>
+            <input type="color" id="inpBakgrunn" required>
+            <span>velg varsel farge:</span>
+            <input type="color" id="VarselFarge" required>
+            <span>skriv nanvet på tema:</span>
+            <input type="text" id="navnTema" required>
+
+            <!----knapp som submitter skjema-->
+            <button>Registrer tema</button>
+        </form>
+
+
+    <!-- Dette er delen du skal gjere stilendringar på. -->
+    <div id="boks">
+        <h1 id="overskrift">Eksempeloverskrift</h1>
+        <p id="paragraf">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laboriosam modi, tempora non, 
+            repellendus aspernatur placeat quam explicabo veniam recusandae odio sed nostrum saepe pariatur 
+            ab quo possimus soluta! Doloribus!
+        </p>
+        <h2 id="varsel">Varsel</h2>
+    </div>
+    <!-- Ferdig med delen du skal gjere stilendringar på. -->
+
+    <script src="java.js"></script>
+</body>
+</html>
