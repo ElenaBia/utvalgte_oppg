@@ -64,7 +64,7 @@ function f_RegistrerTema(evt){
     //ellers
     else{
         //tester at det fungerer
-        console.log(temaObj);
+        console.table(temaObj);
         //aktiverer funksjon som pusher inn det nye objektet i arrayen
         f_PushObjekt(temaObj);
     }; 
