@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>createElement - eksempel</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="eks2-createElement.css">
+    </head>
+    <body>
+        <!-- HTML -->
+        <div id="midtstilt">
+            <h1>Oversikt over elevar</h1>
+            <div id="utElevBoksar">
+            <!---her kommer boksene med hver elev-->
+            </div>
+            <h1>Dynamisk select-element (dropdown)</h1>
+            <select id="utSelect">
+                <!---her kommer en dropdown meny-->
+            </select>
+        </div><!-- Avslutter midtstilt -->
+
+        <!-- Kode -->
+        <script> 
+            // Elementet som skal innehalde alle elevane frå lista
+            var utElevBoksar = document.getElementById("utElevBoksar");
+
+
+            var elevene = [  
+                {navn : "Amanda" , karakter : 4}, 
+                {navn : "Ole" , karakter : 3}, 
+                {navn : "Reidun" , karakter : 6}, 
+                {navn : "Jan" , karakter : 5},
+                {navn : "Jo Bjarne", karakter : 2},
+                {navn : "Svada Bada" , karakter : 5},
+                {navn : "Rada Bada" , karakter : 5},
+                {navn : "Hada Pa Bada" , karakter : 5},
+                {navn : "Rompa Stompa" , karakter : 1},
+                {navn : "Hopp Hipp" , karakter : 2}
+            ];
+
+
+            // Oppretting av HTML, basert på kolleksjonen over
+            var i = 0;
+            for(let elev of elevene) {
+                // Ein div-boks som skal innehalde info om elev
+                var nyDiv = document.createElement("div");
+                nyDiv.className = "elev";
+
+                // Overskrift for eleven (navn)
+                var nyOverskrift = document.createElement("h1");
+                nyOverskrift.innerHTML = "Elev: " + elev.navn;
+
+                // Bilete av eleven
+                var nyttBilete = document.createElement("img");
+                nyttBilete.src = "bileter/" + i + ".jpg";
+                nyttBilete.className = "biletTilpassing";
+                //her øker variabelen for hver elev i kolleksjonen
+                i++;
+                
+                // Paragraf med info om eleven (karakter)
+                var nyParagraf = document.createElement("p");
+                nyParagraf.innerHTML = "Karakter: " + elev.karakter;
+                
+                // Legg til overskrift og paragraf til den nye DIV-boksen
+                nyDiv.appendChild(nyOverskrift);
+                nyDiv.appendChild(nyttBilete);
+                nyDiv.appendChild(nyParagraf);
+
+                // Legg den nye DIV-boksen til i riktig plass i HTML (DOM)
+                document.getElementById("utElevBoksar").appendChild(nyDiv);
+            }
+
+            //Pusher ut den nye option i select i html
+            var utSelect = document.getElementById("utSelect");
+            //lager en option med tekst som ikke skal returnere noe egt.
+            var nyOption = document.createElement("option");
+            nyOption.innerHTML = "Velg person:";
+            utSelect.appendChild(nyOption);
+            
+            // Handterer at den første delen av select-elementet ikkje skal kunne brukast, anna enn til info ved oppstart
+            utSelect.options[0].disabled = true;
+            utSelect.options[0].selected = true;
+       
+            //looper gjennom eleverKollekjonen
+            for(let elev of elevene){
+                //lager en ny option for hver elev
+                var nyttValg = document.createElement("option");
+                nyttValg.value = elev.navn;
+                nyttValg.innerHTML = elev.navn;
+                utSelect.appendChild(nyttValg);
+            }
+
+           
+
+            // Handtere å bruke select-elementet
+            utSelect.onchange = brukeSelect;
+
+            function brukeSelect(evt){
+                let person = evt.target.value;
+                console.log("person valgt: " + person);
+                console.log(elevene.navn[person]);
+            }
+        </script>
+    </body>
+</html>
