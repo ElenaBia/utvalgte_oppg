@@ -6,16 +6,51 @@ let overskrift = document.getElementById("overskrift");
 let paragraf = document.getElementById("paragraf");
 let varsel = document.getElementById("varsel");
 
-//lager en tom array med hver tema
-let kolleksjonTema = [
-    //legger først til tema dark og light mode
+//lager en tom array med default-tema
+let TemaDefault = [
+    //legger  til tema: dark og light 
   {navn:"Dark", tesktF:"white",bakgrunnF:"black", varselF:"yellow"},
   {navn:"Light", tesktF:"black",bakgrunnF:"white", varselF:"green"},
-  //herfra skal de selvvalgte tema komme
 
 ];
-//lager et tom objekt for temaet som er "customised" av brukeren
-let temaObj = {};
+
+//henter det som allerede ligger i localStorage, hvis det finnes ikke noe, bruker vi default
+let kolleksjonTema = JSON.parse(localStorage.getItem('temaObjekt')) || TemaDefault; 
+//pusher inn en ny objekt for hver tema i string. Det blir pushet inn i localStorage
+localStorage.setItem('temaObjekt',  JSON.stringify(kolleksjonTema));
+ 
+//sjekker i consolen
+console.log("Ved oppstart har vi hentet kolleksjonen fra localStorage:");
+//printer i konsolen det som allerede ligger i localStorage
+console.table(kolleksjonTema);
+f_startOppsett();
+
+/*
+    ***************************************************************
+    Funksjon som opprettar select-meny og legg den til HTML.
+    Basert på koden over om localStorage så opprettest enten gamle
+    innstillingar, eventuelt berre defaulten.
+    ***************************************************************
+*/
+
+function f_startOppsett(){
+    
+    //creater ny select-el for det som allerede finnes i localStorage
+
+    //looper gjennom alle tema som finnes
+    for (let i = 0; i < kolleksjonTema.length; i++) {
+        //lager en ny option for hver tema 
+        let optionNy = document.createElement("option");
+        optionNy.value = kolleksjonTema[i].navn;
+        optionNy.innerHTML = kolleksjonTema[i].navn;
+
+        //legger til i select menyen
+        dropDown.appendChild(optionNy);
+    };
+   
+};
+
+
 
 
 
@@ -52,6 +87,7 @@ function f_RegistrerTema(evt){
         varselF:inpVarselF
     };
 
+
     //vi sjekker om navnet har blitt brukt før
 
     //hvis ja..
@@ -69,6 +105,9 @@ function f_RegistrerTema(evt){
         console.table(temaObj);
         //aktiverer funksjon som pusher inn det nye objektet i arrayen
         f_PushObjekt(temaObj);
+        // Oppdaterer localStorage med hele den nye kolleksjonen
+        localStorage.setItem('temaObjekt', JSON.stringify(kolleksjonTema)); 
+
     }; 
 };
 
