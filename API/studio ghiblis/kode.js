@@ -35,7 +35,7 @@ var request = new XMLHttpRequest();
 request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
 
 //when the request loaded, this function will activate. --> waits for the request to load before 
-// "reading" the data. Line 14 might take longer to execute--> better to wait for the load
+// "reading" the data. Line 35 might take longer to execute--> better to wait for the load
 request.onload = function () {
 
     // Begin accessing JSON data here
